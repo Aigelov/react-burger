@@ -1,0 +1,16 @@
+.ingredients {
+  width: 50%;
+}
+
+.middle {
+  height: 50vh;
+  margin-bottom: calc(var(--offset-base-size) * 4);
+  overflow-y: scroll;
+}
+
+.bottom {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
