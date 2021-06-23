@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Api from './components/api';
+import App from './components/app';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Api />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
