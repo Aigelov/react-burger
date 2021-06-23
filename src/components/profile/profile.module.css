@@ -1,0 +1,6 @@
+.profile {
+  display: flex;
+  margin-left: auto;
+  margin-right: calc(var(--offset-base-size) * -5);
+  order: 3;
+}

@@ -1,0 +1,12 @@
+.burgerBuilder {
+  width: 50%;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabContent {
+  height: 70vh;
+  overflow-y: scroll;
+}

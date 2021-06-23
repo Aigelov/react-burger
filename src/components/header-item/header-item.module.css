@@ -1,0 +1,12 @@
+.menuItem {
+  display: flex;
+  flex-direction: row;
+}
+
+.text {
+  align-self: center;
+}
+
+.active {
+  color: #FFF;
+}
