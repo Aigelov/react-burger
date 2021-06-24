@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import HeaderItemStyles from "./header-item.module.css";
 
 export const HeaderItem = ({ svgIcon, text, active }) => {
@@ -12,4 +13,10 @@ export const HeaderItem = ({ svgIcon, text, active }) => {
       <p className={headerItemText}>{text}</p>
     </li>
   );
+};
+
+HeaderItem.propTypes = {
+  svgIcon: PropTypes.object,
+  text: PropTypes.string,
+  active: PropTypes.string,
 };

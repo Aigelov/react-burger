@@ -11,18 +11,16 @@ export const BurgerConstructorItem = ({ ...props }) => {
   ingredientElStyle += props.isLocked ? " ml-8 mr-5" : " ml-2 mr-2";
 
   return (
-    <>
-      <div className={IngredientStyles.ingredient}>
-        {!props.isLocked && (
-          <span className={IngredientStyles.drag}>
-            <DragIcon type="primary" />
-          </span>
-        )}
-        <span className={ingredientElStyle}>
-          <ConstructorElement {...props} />
+    <div className={IngredientStyles.ingredient}>
+      {!props.isLocked && (
+        <span className={IngredientStyles.drag}>
+          <DragIcon type="primary" />
         </span>
-      </div>
-    </>
+      )}
+      <span className={ingredientElStyle}>
+        <ConstructorElement {...props} />
+      </span>
+    </div>
   );
 };
 

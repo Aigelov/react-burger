@@ -17,10 +17,6 @@ ul {
   margin: 0;
 }
 
-#root {
-  overflow-x: hidden;
-}
-
 .col-1 {
   width: 8.33%;
 }

@@ -18,12 +18,17 @@ export const App = () => {
             "Content-Type": "application/json",
           },
         });
+
+        if (!res.ok) {
+          throw new Error("ERROR network answer was not ok");
+        }
+
         const response = await res.json();
         setIngredients(response.data);
-        setLoading(false);
       } catch (err) {
+        console.error("ERROR in [GetIngredients] method", err);
+      } finally {
         setLoading(false);
-        console.error("ERROR in [GetIngredients] method");
       }
     };
 
@@ -34,7 +39,7 @@ export const App = () => {
     <>
       <AppHeader />
       {loading && <Spinner />}
-      {!loading && <Main ingredients={ingredients} />}
+      {!loading && ingredients.length && <Main ingredients={ingredients} />}
     </>
   );
 };

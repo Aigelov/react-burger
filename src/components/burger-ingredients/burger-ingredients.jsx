@@ -1,16 +1,18 @@
 import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
 import { BurgerIngredientsTabsContent } from "../burger-ingredients-tabs-content/burger-ingredients-tabs-content";
 import { BurgerIngredientsTabs } from "../burger-ingredients-tabs/burger-ingredients-tabs";
 import { IngredientDetails } from "../ingredient-details/ingredient-details";
 import BurgerIngredientsStyles from "./burger-ingredients.module.css";
+import { BurgerIngredientPropTypes } from "../../prop-types";
 
 export const BurgerIngredients = ({ ingredients }) => {
   const [visible, setVisible] = useState(false);
   const [ingredient, setIngredient] = useState(null);
 
-  const rollRef = useRef(null);
+  const bunRef = useRef(null);
   const sauceRef = useRef(null);
-  const fillingRef = useRef(null);
+  const mainRef = useRef(null);
 
   const burgerIngredientsStyle = `${BurgerIngredientsStyles.burgerIngredients} mt-10 mr-5`;
 
@@ -33,15 +35,15 @@ export const BurgerIngredients = ({ ingredients }) => {
         <p className="text text_type_main-large mb-5">Соберите бургер</p>
 
         <BurgerIngredientsTabs
-          rollRef={rollRef}
+          bunRef={bunRef}
           sauceRef={sauceRef}
-          fillingRef={fillingRef}
+          mainRef={mainRef}
         />
 
         <BurgerIngredientsTabsContent
-          rollRef={rollRef}
+          bunRef={bunRef}
           sauceRef={sauceRef}
-          fillingRef={fillingRef}
+          mainRef={mainRef}
           ingredients={ingredients}
           ingredientClickHandler={ingredientClickHandler}
         />
@@ -50,4 +52,8 @@ export const BurgerIngredients = ({ ingredients }) => {
       {visible && <IngredientDetails onClose={onModalClose} {...ingredient} />}
     </>
   );
+};
+
+BurgerIngredients.propTypes = {
+  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes)),
 };

@@ -1,10 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 import CardItemStyles from "./burger-ingredients-card-item.module.css";
+import { BurgerIngredientPropTypes } from "../../prop-types";
 
 export const BurgerIngredientsCardItem = ({
   _id,
@@ -35,16 +36,6 @@ export const BurgerIngredientsCardItem = ({
 };
 
 BurgerIngredientsCardItem.propTypes = {
-  _id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-  calories: PropTypes.number,
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  image_mobile: PropTypes.string,
-  image_large: PropTypes.string,
-  __v: PropTypes.number,
+  ...BurgerIngredientPropTypes,
+  ingredientClickHandler: PropTypes.func,
 };

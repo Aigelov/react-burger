@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 import BurgerIngredientsTabsStyles from "./burger-ingredients-tabs.module.css";
 
-export const BurgerIngredientsTabs = ({ rollRef, sauceRef, fillingRef }) => {
+export const BurgerIngredientsTabs = ({ bunRef, sauceRef, mainRef }) => {
   const [current, setCurrent] = useState("roll");
 
   const tabStyle = `${BurgerIngredientsTabsStyles.tabs} mb-10`;
@@ -19,7 +20,7 @@ export const BurgerIngredientsTabs = ({ rollRef, sauceRef, fillingRef }) => {
       <Tab
         value="roll"
         active={current === "roll"}
-        onClick={() => tabClickHandler("roll", rollRef)}
+        onClick={() => tabClickHandler("roll", bunRef)}
       >
         Булки
       </Tab>
@@ -33,10 +34,16 @@ export const BurgerIngredientsTabs = ({ rollRef, sauceRef, fillingRef }) => {
       <Tab
         value="filling"
         active={current === "filling"}
-        onClick={() => tabClickHandler("filling", fillingRef)}
+        onClick={() => tabClickHandler("filling", mainRef)}
       >
         Начинки
       </Tab>
     </span>
   );
+};
+
+BurgerIngredientsTabs.propTypes = {
+  bunRef: PropTypes.object,
+  sauceRef: PropTypes.object,
+  mainRef: PropTypes.object,
 };
