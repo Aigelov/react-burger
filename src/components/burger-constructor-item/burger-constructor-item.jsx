@@ -1,28 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import IngredientStyles from "./burger-constructor-item.module.css";
 import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import IngredientStyles from "./burger-constructor-item.module.css";
 
-export const BurgerConstructorItem = (props) => {
-  const marginStyle = props.isLocked ? "ml-8 mr-5" : "ml-2 mr-2";
+export const BurgerConstructorItem = ({ ...props }) => {
+  let ingredientElStyle = IngredientStyles.ingredientEl;
+  ingredientElStyle += props.isLocked ? " ml-8 mr-5" : " ml-2 mr-2";
 
   return (
-    <div className={IngredientStyles.ingredient}>
-      {!props.isLocked && <DragIcon type="primary" />}
-      <span className={marginStyle}>
-        <ConstructorElement {...props} />
-      </span>
-    </div>
+    <>
+      <div className={IngredientStyles.ingredient}>
+        {!props.isLocked && (
+          <span className={IngredientStyles.drag}>
+            <DragIcon type="primary" />
+          </span>
+        )}
+        <span className={ingredientElStyle}>
+          <ConstructorElement {...props} />
+        </span>
+      </div>
+    </>
   );
 };
 
 BurgerConstructorItem.propTypes = {
   type: PropTypes.oneOf(["top", "bottom"]),
   isLocked: PropTypes.bool,
-  handleClose: PropTypes.func,
+  ingredientClickHandler: PropTypes.func,
+  _id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

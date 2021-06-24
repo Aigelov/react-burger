@@ -7,19 +7,20 @@ import {
 import CardItemStyles from "./burger-ingredients-card-item.module.css";
 
 export const BurgerIngredientsCardItem = ({
+  _id,
   name,
-  counter,
   price,
   image,
+  ingredientClickHandler,
   ...others
 }) => {
   const cardStyle = `${CardItemStyles.card} mb-8`;
   const currencyIconStyle = `${CardItemStyles.currencyIcon} ml-2`;
 
   return (
-    <article className={cardStyle}>
+    <article className={cardStyle} onClick={() => ingredientClickHandler(_id)}>
       <span className="ml-3 mr-3">
-        {counter > 0 && <Counter count={counter} size="default" />}
+        <Counter count={1} size="default" />
         <img src={image} alt={name} width="100%" />
         <div className="pt-1 pb-1">
           <span className="text text_type_main-medium">{price}</span>
@@ -37,7 +38,6 @@ BurgerIngredientsCardItem.propTypes = {
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  counter: PropTypes.number,
   proteins: PropTypes.number,
   fat: PropTypes.number,
   carbohydrates: PropTypes.number,

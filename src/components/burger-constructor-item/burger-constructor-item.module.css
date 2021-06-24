@@ -4,3 +4,11 @@
   flex-direction: row;
   margin-bottom: calc(var(--offset-base-size) * 4);
 }
+
+.ingredientEl {
+  cursor: pointer;
+}
+
+.drag {
+  cursor: pointer;
+}
