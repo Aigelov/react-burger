@@ -1,23 +1,21 @@
-import { burgerIngredientsData } from "../utils/data";
-
-export const constructBurgerCrust = (type) => {
-  const burgerIngredient = burgerIngredientsData.find(
-    (item) => item.type === "bun" && item.counter > 0
-  );
+export const constructBurgerCrust = (ingredients, type) => {
+  const burgerIngredient = ingredients.find((item) => item.type === "bun");
 
   return {
     type: type,
     isLocked: true,
+    _id: burgerIngredient?._id,
     text: burgerIngredient?.name,
     price: burgerIngredient?.price,
     thumbnail: burgerIngredient?.image,
   };
 };
 
-export const constructBurger = () => {
-  return burgerIngredientsData
-    .filter((item) => item.counter > 0 && item.type !== "bun")
+export const constructBurger = (ingredients) => {
+  return ingredients
+    .filter((item) => item.type !== "bun")
     .map((item) => ({
+      _id: item?._id,
       text: item?.name,
       price: item?.price,
       thumbnail: item?.image,

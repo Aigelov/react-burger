@@ -1,25 +1,27 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   Counter,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 import CardItemStyles from "./burger-ingredients-card-item.module.css";
+import { BurgerIngredientPropTypes } from "../../prop-types";
 
 export const BurgerIngredientsCardItem = ({
+  _id,
   name,
-  counter,
   price,
   image,
+  ingredientClickHandler,
   ...others
 }) => {
   const cardStyle = `${CardItemStyles.card} mb-8`;
   const currencyIconStyle = `${CardItemStyles.currencyIcon} ml-2`;
 
   return (
-    <article className={cardStyle}>
+    <article className={cardStyle} onClick={() => ingredientClickHandler(_id)}>
       <span className="ml-3 mr-3">
-        {counter > 0 && <Counter count={counter} size="default" />}
+        <Counter count={1} size="default" />
         <img src={image} alt={name} width="100%" />
         <div className="pt-1 pb-1">
           <span className="text text_type_main-medium">{price}</span>
@@ -34,17 +36,6 @@ export const BurgerIngredientsCardItem = ({
 };
 
 BurgerIngredientsCardItem.propTypes = {
-  _id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  counter: PropTypes.number,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-  calories: PropTypes.number,
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  image_mobile: PropTypes.string,
-  image_large: PropTypes.string,
-  __v: PropTypes.number,
+  ...BurgerIngredientPropTypes,
+  ingredientClickHandler: PropTypes.func.isRequired,
 };

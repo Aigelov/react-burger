@@ -1,0 +1,5 @@
+.ingredientDetailsItem {
+  color: #8585AD;
+  display: flex;
+  flex-direction: column;
+}
