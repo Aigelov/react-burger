@@ -51,9 +51,10 @@ export const BurgerIngredientsTabsContent = ({
 };
 
 BurgerIngredientsTabsContent.propTypes = {
-  bunRef: PropTypes.object,
-  sauceRef: PropTypes.object,
-  mainRef: PropTypes.object,
-  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes)),
-  ingredientClickHandler: PropTypes.func,
+  bunRef: PropTypes.object.isRequired,
+  sauceRef: PropTypes.object.isRequired,
+  mainRef: PropTypes.object.isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes))
+    .isRequired,
+  ingredientClickHandler: PropTypes.func.isRequired,
 };

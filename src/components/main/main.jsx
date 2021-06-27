@@ -17,5 +17,6 @@ export const Main = ({ ingredients }) => {
 };
 
 Main.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes)),
+  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes))
+    .isRequired,
 };

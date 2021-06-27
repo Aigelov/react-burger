@@ -27,7 +27,6 @@ export const BurgerConstructorItem = ({ ...props }) => {
 BurgerConstructorItem.propTypes = {
   type: PropTypes.oneOf(["top", "bottom"]),
   isLocked: PropTypes.bool,
-  ingredientClickHandler: PropTypes.func,
   _id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,

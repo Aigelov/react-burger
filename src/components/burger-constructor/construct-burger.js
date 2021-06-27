@@ -8,11 +8,6 @@ export const constructBurgerCrust = (ingredients, type) => {
     text: burgerIngredient?.name,
     price: burgerIngredient?.price,
     thumbnail: burgerIngredient?.image,
-    // largeImage: burgerIngredient?.image_large,
-    // calories: burgerIngredient?.calories,
-    // carbohydrates: burgerIngredient?.carbohydrates,
-    // fat: burgerIngredient?.fat,
-    // proteins: burgerIngredient?.proteins,
   };
 };
 
@@ -24,10 +19,5 @@ export const constructBurger = (ingredients) => {
       text: item?.name,
       price: item?.price,
       thumbnail: item?.image,
-      // largeImage: item?.image_large,
-      // calories: item?.calories,
-      // carbohydrates: item?.carbohydrates,
-      // fat: item?.fat,
-      // proteins: item?.proteins,
     }));
 };

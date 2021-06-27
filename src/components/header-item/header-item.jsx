@@ -16,7 +16,7 @@ export const HeaderItem = ({ svgIcon, text, active }) => {
 };
 
 HeaderItem.propTypes = {
-  svgIcon: PropTypes.object,
-  text: PropTypes.string,
+  svgIcon: PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired,
   active: PropTypes.string,
 };

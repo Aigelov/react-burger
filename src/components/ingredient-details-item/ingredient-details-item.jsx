@@ -12,6 +12,6 @@ export const IngredientDetailsItem = ({ title, info }) => {
 };
 
 IngredientDetailsItem.propTypes = {
-  title: PropTypes.string,
-  info: PropTypes.number,
+  title: PropTypes.string.isRequired,
+  info: PropTypes.number.isRequired,
 };

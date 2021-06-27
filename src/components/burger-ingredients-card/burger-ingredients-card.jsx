@@ -29,7 +29,8 @@ export const BurgerIngredientsCard = ({
 
 BurgerIngredientsCard.propTypes = {
   title: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes)),
-  tabRef: PropTypes.object,
-  ingredientClickHandler: PropTypes.func,
+  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes))
+    .isRequired,
+  tabRef: PropTypes.object.isRequired,
+  ingredientClickHandler: PropTypes.func.isRequired,
 };

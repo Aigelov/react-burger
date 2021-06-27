@@ -39,5 +39,6 @@ export const BurgerConstructor = ({ ingredients }) => {
 };
 
 BurgerConstructor.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes)),
+  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes))
+    .isRequired,
 };

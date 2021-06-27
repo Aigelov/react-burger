@@ -37,5 +37,5 @@ export const BurgerIngredientsCardItem = ({
 
 BurgerIngredientsCardItem.propTypes = {
   ...BurgerIngredientPropTypes,
-  ingredientClickHandler: PropTypes.func,
+  ingredientClickHandler: PropTypes.func.isRequired,
 };

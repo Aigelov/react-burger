@@ -55,5 +55,6 @@ export const BurgerIngredients = ({ ingredients }) => {
 };
 
 BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes)),
+  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes))
+    .isRequired,
 };
