@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { AppHeader } from "./app-header/app-header";
 import { Spinner } from "./spinner/spinner";
 import { Main } from "./main/main";
+import { BurgerContext } from "./services/BurgerContext";
 
 const INGREDIENTS_URL = "https://norma.nomoreparties.space/api/ingredients";
 
 export const App = () => {
-  const [ingredients, setIngredients] = useState<any>([]);
+  const [ingredients, setIngredients] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -39,7 +40,11 @@ export const App = () => {
     <>
       <AppHeader />
       {loading && <Spinner />}
-      {!loading && ingredients.length && <Main ingredients={ingredients} />}
+      {!loading && ingredients.length && (
+        <BurgerContext.Provider value={{ ingredients }}>
+          <Main />
+        </BurgerContext.Provider>
+      )}
     </>
   );
 };

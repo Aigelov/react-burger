@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import { BurgerConstructorItem } from "../burger-constructor-item/burger-constructor-item";
-import { constructBurger, constructBurgerCrust } from "./construct-burger";
+import { constructBurger, constructBurgerBun } from "./construct-burger";
 import IngredientsStyles from "./burger-constructor.module.css";
-import { BurgerIngredientPropTypes } from "../../prop-types";
 import { OrderButton } from "../order-button/order-button";
+import { BurgerContext } from "../services/BurgerContext";
+import { TotalPrice } from "../total-price/total-price";
 
-export const BurgerConstructor = ({ ingredients }) => {
+export const BurgerConstructor = () => {
+  const { ingredients } = useContext(BurgerContext);
+  const bunIngredient = ingredients.find((item) => item.type === "bun");
+
   const ingredientStyle = `${IngredientsStyles.ingredients} mt-25 ml-5`;
   const bottomStyles = `${IngredientsStyles.bottom} mr-3 mt-10 pb-5`;
 
@@ -17,7 +20,7 @@ export const BurgerConstructor = ({ ingredients }) => {
 
   return (
     <section className={ingredientStyle}>
-      <BurgerConstructorItem {...constructBurgerCrust(ingredients, "top")} />
+      <BurgerConstructorItem {...constructBurgerBun(bunIngredient, "top")} />
 
       <div className={IngredientsStyles.middle}>
         {constructBurger(ingredients).map((ingredient) => (
@@ -25,10 +28,10 @@ export const BurgerConstructor = ({ ingredients }) => {
         ))}
       </div>
 
-      <BurgerConstructorItem {...constructBurgerCrust(ingredients, "bottom")} />
+      <BurgerConstructorItem {...constructBurgerBun(bunIngredient, "bottom")} />
 
       <span className={bottomStyles}>
-        <span className="text text_type_digits-medium">610</span>
+        <TotalPrice />
         <span className="ml-2 mr-10 mt-1">
           <CurrencyIcon type="primary" />
         </span>
@@ -36,9 +39,4 @@ export const BurgerConstructor = ({ ingredients }) => {
       </span>
     </section>
   );
-};
-
-BurgerConstructor.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes))
-    .isRequired,
 };

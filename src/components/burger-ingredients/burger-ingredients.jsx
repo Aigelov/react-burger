@@ -1,14 +1,15 @@
-import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useContext, useRef, useState } from "react";
 import { BurgerIngredientsTabsContent } from "../burger-ingredients-tabs-content/burger-ingredients-tabs-content";
 import { BurgerIngredientsTabs } from "../burger-ingredients-tabs/burger-ingredients-tabs";
 import { IngredientDetails } from "../ingredient-details/ingredient-details";
 import BurgerIngredientsStyles from "./burger-ingredients.module.css";
-import { BurgerIngredientPropTypes } from "../../prop-types";
+import { BurgerContext } from "../services/BurgerContext";
 
-export const BurgerIngredients = ({ ingredients }) => {
+export const BurgerIngredients = () => {
   const [visible, setVisible] = useState(false);
   const [ingredient, setIngredient] = useState(null);
+
+  const { ingredients } = useContext(BurgerContext);
 
   const bunRef = useRef(null);
   const sauceRef = useRef(null);
@@ -52,9 +53,4 @@ export const BurgerIngredients = ({ ingredients }) => {
       {visible && <IngredientDetails onClose={onModalClose} {...ingredient} />}
     </>
   );
-};
-
-BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes))
-    .isRequired,
 };
