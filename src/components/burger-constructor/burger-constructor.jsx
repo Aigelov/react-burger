@@ -8,7 +8,7 @@ import { BurgerContext } from "../services/BurgerContext";
 import { TotalPrice } from "../total-price/total-price";
 
 export const BurgerConstructor = () => {
-  const { ingredients } = useContext(BurgerContext);
+  const { selectedIngredients: ingredients } = useContext(BurgerContext);
   const bunIngredient = ingredients.find((item) => item.type === "bun");
 
   const ingredientStyle = `${IngredientsStyles.ingredients} mt-25 ml-5`;
@@ -23,8 +23,8 @@ export const BurgerConstructor = () => {
       <BurgerConstructorItem {...constructBurgerBun(bunIngredient, "top")} />
 
       <div className={IngredientsStyles.middle}>
-        {constructBurger(ingredients).map((ingredient) => (
-          <BurgerConstructorItem key={ingredient._id} {...ingredient} />
+        {constructBurger(ingredients).map((ingredient, index) => (
+          <BurgerConstructorItem key={ingredient._id + index} {...ingredient} />
         ))}
       </div>
 

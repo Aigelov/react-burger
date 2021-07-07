@@ -8,6 +8,7 @@ const INGREDIENTS_URL = "https://norma.nomoreparties.space/api/ingredients";
 
 export const App = () => {
   const [ingredients, setIngredients] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -41,8 +42,8 @@ export const App = () => {
       <AppHeader />
       {loading && <Spinner />}
       {!loading && ingredients.length && (
-        <BurgerContext.Provider value={{ ingredients }}>
-          <Main />
+        <BurgerContext.Provider value={{ ingredients, selectedIngredients }}>
+          <Main setSelectedIngredients={setSelectedIngredients} />
         </BurgerContext.Provider>
       )}
     </>

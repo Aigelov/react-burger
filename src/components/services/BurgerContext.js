@@ -1,3 +1,6 @@
 import { createContext } from "react";
 
-export const BurgerContext = createContext({ ingredients: [] });
+export const BurgerContext = createContext({
+  ingredients: [],
+  selectedIngredients: [],
+});

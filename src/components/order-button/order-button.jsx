@@ -11,7 +11,7 @@ export const OrderButton = () => {
   const [visible, setVisible] = useState(false);
   const [orderNumber, setOrderNumber] = useState(0);
 
-  const { ingredients } = useContext(BurgerContext);
+  const { selectedIngredients: ingredients } = useContext(BurgerContext);
 
   const onModalClose = () => {
     setVisible(false);
@@ -21,6 +21,13 @@ export const OrderButton = () => {
 
   const checkoutHandler = async () => {
     try {
+      const bun = ingredients.filter((item) => item.type === "bun");
+
+      // Запрос к серверу за номером заказа нельзя отправить пока не добавлена булка.
+      if (!bun.length) {
+        return null;
+      }
+
       const body = JSON.stringify({
         ingredients: ingredientIDs,
       });
