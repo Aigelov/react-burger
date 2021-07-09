@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import OrderAcceptedStyles from "./order-details.module.css";
+import { OrderContext } from "../services/OrderContext";
 import Done from "../../images/done.svg";
 
 export const OrderDetails = () => {
+  const { orderNumber } = useContext(OrderContext);
+
   const orderIdStyle = `${OrderAcceptedStyles.orderId} text text_type_digits-large`;
   const textGreyStyle = `${OrderAcceptedStyles.textGrey} text text_type_main-default mt-2`;
 
   return (
     <div className={OrderAcceptedStyles.orderAccepted}>
-      <span className={orderIdStyle}>034536</span>
+      <span className={orderIdStyle}>{orderNumber}</span>
       <span className="text text_type_main-medium mt-8">
         идентификатор заказа
       </span>
