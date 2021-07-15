@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import OrderAcceptedStyles from "./order-details.module.css";
-import { OrderContext } from "../services/OrderContext";
 import Done from "../../images/done.svg";
 
 export const OrderDetails = () => {
-  const { orderNumber } = useContext(OrderContext);
+  const { orderNumber } = useSelector((store) => store.burger);
 
   const orderIdStyle = `${OrderAcceptedStyles.orderId} text text_type_digits-large`;
   const textGreyStyle = `${OrderAcceptedStyles.textGrey} text text_type_main-default mt-2`;

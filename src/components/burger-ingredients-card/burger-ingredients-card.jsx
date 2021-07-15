@@ -1,16 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { BurgerIngredientsCardItem } from "../burger-ingredients-card-item/burger-ingredients-card-item";
 import CardStyles from "./burger-ingredients-card.module.css";
-import { BurgerContext } from "../services/BurgerContext";
+import { BurgerIngredientPropTypes } from "../../prop-types";
 
 export const BurgerIngredientsCard = ({
   title,
+  ingredients,
   tabRef,
   ingredientClickHandler,
 }) => {
-  const { ingredients } = useContext(BurgerContext);
-
   return (
     <div ref={tabRef}>
       <p className="text text_type_main-medium mb-6">{title}</p>
@@ -30,6 +29,7 @@ export const BurgerIngredientsCard = ({
 
 BurgerIngredientsCard.propTypes = {
   title: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf(PropTypes.shape(BurgerIngredientPropTypes)),
   tabRef: PropTypes.object.isRequired,
   ingredientClickHandler: PropTypes.func.isRequired,
 };

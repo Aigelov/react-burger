@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
-import { BurgerContext } from "../services/BurgerContext";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export const TotalPrice = () => {
-  const { selectedIngredients: ingredients } = useContext(BurgerContext);
+  const { selectedIngredients: ingredients } = useSelector(
+    (store) => store.burger
+  );
 
   // Стоимость рассчитывается как сумма всех ингредиентов добавленных в конструктор.
   // В стоимость должны быть включены две булки - верх и низ.

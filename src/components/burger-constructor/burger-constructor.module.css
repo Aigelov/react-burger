@@ -1,5 +1,10 @@
 .ingredients {
+  border: 1px dashed transparent;
   width: 50%;
+}
+
+.ingredientsMiddle {
+  border: 1px dashed transparent;
 }
 
 .middle {

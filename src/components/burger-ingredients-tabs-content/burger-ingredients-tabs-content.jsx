@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import BurgerIngredientsTabsContentStyles from "./burger-ingredients-tabs-content.module.css";
 import { BurgerIngredientsCard } from "../burger-ingredients-card/burger-ingredients-card";
-import { BurgerContext } from "../services/BurgerContext";
 
 export const BurgerIngredientsTabsContent = ({
   bunRef,
   sauceRef,
   mainRef,
   ingredientClickHandler,
+  scrollContainerRef,
+  handleScroll,
 }) => {
-  const { ingredients } = useContext(BurgerContext);
+  const { ingredients } = useSelector((store) => store.burger);
 
   const tabContentStyle = `${BurgerIngredientsTabsContentStyles.tabContent} pr-3`;
 
@@ -37,7 +39,11 @@ export const BurgerIngredientsTabsContent = ({
   ];
 
   return (
-    <div className={tabContentStyle}>
+    <div
+      className={tabContentStyle}
+      ref={scrollContainerRef}
+      onScroll={handleScroll}
+    >
       {tabsContent.map((item) => (
         <BurgerIngredientsCard
           key={item.title}
@@ -56,4 +62,6 @@ BurgerIngredientsTabsContent.propTypes = {
   sauceRef: PropTypes.object.isRequired,
   mainRef: PropTypes.object.isRequired,
   ingredientClickHandler: PropTypes.func.isRequired,
+  scrollContainerRef: PropTypes.object.isRequired,
+  handleScroll: PropTypes.func.isRequired,
 };

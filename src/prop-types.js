@@ -12,5 +12,6 @@ export const BurgerIngredientPropTypes = {
   image: PropTypes.string.isRequired,
   image_mobile: PropTypes.string,
   image_large: PropTypes.string,
+  count: PropTypes.number,
   __v: PropTypes.number,
 };
