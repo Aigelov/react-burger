@@ -3,38 +3,35 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import BurgerIngredientsTabsStyles from "./burger-ingredients-tabs.module.css";
 
-export const BurgerIngredientsTabs = ({ bunRef, sauceRef, mainRef }) => {
-  const [current, setCurrent] = useState("roll");
-
+export const BurgerIngredientsTabs = ({
+  bunRef,
+  sauceRef,
+  mainRef,
+  currentTab,
+  tabClickHandler,
+}) => {
   const tabStyle = `${BurgerIngredientsTabsStyles.tabs} mb-10`;
-
-  const tabClickHandler = (tab, tabRef) => {
-    setCurrent(tab);
-    tabRef?.current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
 
   return (
     <span className={tabStyle}>
       <Tab
-        value="roll"
-        active={current === "roll"}
-        onClick={() => tabClickHandler("roll", bunRef)}
+        value="bun"
+        active={currentTab === "bun"}
+        onClick={() => tabClickHandler("bun", bunRef)}
       >
         Булки
       </Tab>
       <Tab
         value="sauce"
-        active={current === "sauce"}
+        active={currentTab === "sauce"}
         onClick={() => tabClickHandler("sauce", sauceRef)}
       >
         Соусы
       </Tab>
       <Tab
-        value="filling"
-        active={current === "filling"}
-        onClick={() => tabClickHandler("filling", mainRef)}
+        value="main"
+        active={currentTab === "main"}
+        onClick={() => tabClickHandler("main", mainRef)}
       >
         Начинки
       </Tab>
@@ -46,4 +43,6 @@ BurgerIngredientsTabs.propTypes = {
   bunRef: PropTypes.object.isRequired,
   sauceRef: PropTypes.object.isRequired,
   mainRef: PropTypes.object.isRequired,
+  currentTab: PropTypes.string.isRequired,
+  tabClickHandler: PropTypes.func.isRequired,
 };

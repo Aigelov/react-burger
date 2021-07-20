@@ -1,17 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { OrderDetails } from "../order-details/order-details";
-import { BurgerContext } from "../services/BurgerContext";
-import { OrderContext } from "../services/OrderContext";
+import { setOrderNumber } from "../../services/actions/burger";
 import { Modal } from "../modal/modal";
 
 const CHECKOUT_URL = "https://norma.nomoreparties.space/api/orders";
 
 export const OrderButton = () => {
-  const [visible, setVisible] = useState(false);
-  const [orderNumber, setOrderNumber] = useState(0);
+  const dispatch = useDispatch();
 
-  const { selectedIngredients: ingredients } = useContext(BurgerContext);
+  const [visible, setVisible] = useState(false);
+
+  const { selectedIngredients: ingredients } = useSelector(
+    (store) => store.burger
+  );
 
   const onModalClose = () => {
     setVisible(false);
@@ -44,7 +47,7 @@ export const OrderButton = () => {
       }
 
       const response = await res.json();
-      setOrderNumber(response?.order?.number);
+      dispatch(setOrderNumber(response?.order?.number));
 
       setVisible(true);
     } catch (err) {
@@ -60,9 +63,7 @@ export const OrderButton = () => {
 
       {visible && (
         <Modal onClose={onModalClose}>
-          <OrderContext.Provider value={{ orderNumber }}>
-            <OrderDetails />
-          </OrderContext.Provider>
+          <OrderDetails />
         </Modal>
       )}
     </>

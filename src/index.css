@@ -90,3 +90,7 @@ ul {
     width: 100%;
   }
 }
+
+#__react-alert__ > div > div > div {
+  background-color: #444 !important;
+}

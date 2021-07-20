@@ -1,15 +1,21 @@
 import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { Provider as AlertProvider } from "react-alert";
+// @ts-ignore
+import AlertTemplate from "react-alert-template-basic";
 import reportWebVitals from "./reportWebVitals";
+import { alertOptions } from "./alert";
 import { App } from "./components/app";
 import { store } from "./store";
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <AlertProvider template={AlertTemplate} {...alertOptions}>
+        <App />
+      </AlertProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
