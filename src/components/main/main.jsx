@@ -11,9 +11,8 @@ import MainStyles from "./main.module.css";
 export const Main = () => {
   const dispatch = useDispatch();
 
-  const { ingredients, selectedIngredients } = useSelector(
-    (store) => store.burger
-  );
+  const { ingredients } = useSelector((store) => store.ingredientsReducer);
+  const { selectedIngredients } = useSelector((store) => store.burger);
 
   const alert = useAlert();
 

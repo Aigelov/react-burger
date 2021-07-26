@@ -4,13 +4,10 @@ import { useAlert } from "react-alert";
 import { BurgerIngredientsTabsContent } from "../burger-ingredients-tabs-content/burger-ingredients-tabs-content";
 import { BurgerIngredientsTabs } from "../burger-ingredients-tabs/burger-ingredients-tabs";
 import { IngredientDetails } from "../ingredient-details/ingredient-details";
+import { addIngredient, increaseCount } from "../../services/actions/burger";
+import { ingredientsActions } from "../../services/slices/ingredients";
 import BurgerIngredientsStyles from "./burger-ingredients.module.css";
 import { Spinner } from "../spinner/spinner";
-import {
-  addIngredient,
-  getIngredients,
-  increaseCount,
-} from "../../services/actions/burger";
 
 export const BurgerIngredients = () => {
   const dispatch = useDispatch();
@@ -18,8 +15,10 @@ export const BurgerIngredients = () => {
   const [visible, setVisible] = useState(false);
   const [ingredient, setIngredient] = useState(null);
 
-  const { ingredients, ingredientsRequest, selectedIngredients } = useSelector(
-    (store) => store.burger
+  const { selectedIngredients } = useSelector((store) => store.burger);
+
+  const { ingredients, loading } = useSelector(
+    (store) => store.ingredientsReducer
   );
 
   const [currentTab, setCurrentTab] = useState("bun");
@@ -32,7 +31,7 @@ export const BurgerIngredients = () => {
   const alert = useAlert();
 
   useEffect(() => {
-    dispatch(getIngredients());
+    dispatch(ingredientsActions.findAll());
   }, [dispatch]);
 
   const ingredientClickHandler = (ingredientId) => {
@@ -90,9 +89,9 @@ export const BurgerIngredients = () => {
   return (
     <>
       <section className={burgerIngredientsStyle}>
-        {ingredientsRequest && <Spinner />}
+        {loading && <Spinner />}
 
-        {!ingredientsRequest && ingredients.length && (
+        {!loading && ingredients.length && (
           <>
             <p className="text text_type_main-large mb-5">Соберите бургер</p>
 

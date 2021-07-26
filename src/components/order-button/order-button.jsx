@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { OrderDetails } from "../order-details/order-details";
-import { setOrderNumber } from "../../services/actions/burger";
+import { setOrderNumber } from "../../services/slices/order";
 import { Modal } from "../modal/modal";
 
 const CHECKOUT_URL = "https://norma.nomoreparties.space/api/orders";

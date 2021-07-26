@@ -4,7 +4,7 @@ import OrderAcceptedStyles from "./order-details.module.css";
 import Done from "../../images/done.svg";
 
 export const OrderDetails = () => {
-  const { orderNumber } = useSelector((store) => store.burger);
+  const { orderNumber } = useSelector((store) => store.orderSliceReducer);
 
   const orderIdStyle = `${OrderAcceptedStyles.orderId} text text_type_digits-large`;
   const textGreyStyle = `${OrderAcceptedStyles.textGrey} text text_type_main-default mt-2`;

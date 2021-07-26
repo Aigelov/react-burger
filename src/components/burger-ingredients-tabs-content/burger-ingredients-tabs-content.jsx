@@ -12,7 +12,7 @@ export const BurgerIngredientsTabsContent = ({
   scrollContainerRef,
   handleScroll,
 }) => {
-  const { ingredients } = useSelector((store) => store.burger);
+  const { ingredients } = useSelector((store) => store.ingredientsReducer);
 
   const tabContentStyle = `${BurgerIngredientsTabsContentStyles.tabContent} pr-3`;
 

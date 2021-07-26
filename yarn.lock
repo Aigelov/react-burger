@@ -2194,10 +2194,10 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@ya.praktikum/react-developer-burger-ui-components@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@ya.praktikum/react-developer-burger-ui-components/-/react-developer-burger-ui-components-1.5.0.tgz#adce111fe1cfbc7812514537cd4afb406f2c0aec"
-  integrity sha512-JyipfMa1UTNFv7dQg9j3fUfI8nFUjx7OjPRG73aV5ktkuX7xdePnocwQbTSSzAzHK5+zbPT8/l0gB1gCxv191w==
+"@ya.praktikum/react-developer-burger-ui-components@^1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@ya.praktikum/react-developer-burger-ui-components/-/react-developer-burger-ui-components-1.12.0.tgz#ad7a07926fc55f1ac9a3ffcd724ba03b7b48fa74"
+  integrity sha512-UYsviVI1AEXaAb8YbZaIu48WVxHhq3K6lAHgKuyGz2rBFI05C2nxNY0NDHn4h48j5bXzILHFzCU+nilqQLMOjw==
   dependencies:
     clsx "^1.1.1"
 
