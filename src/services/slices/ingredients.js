@@ -1,23 +1,5 @@
 import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
-
-const INGREDIENTS_URL = "https://norma.nomoreparties.space/api/ingredients";
-
-const findAllIngredients = async () => {
-  return await new Promise(async (resolve, reject) => {
-    const res = await fetch(INGREDIENTS_URL, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!res.ok) {
-      reject("ERROR network answer was not ok");
-    }
-
-    const response = await res.json();
-    resolve(response);
-  });
-};
+import { findAllIngredients } from "../services/ingredients";
 
 const findAll = createAsyncThunk("ingredients/fetch-all", () =>
   findAllIngredients()

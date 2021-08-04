@@ -11,6 +11,7 @@ export const routes = [
     text: "Конструктор",
     active: "active",
     padding: "p-5",
+    path: "/",
   },
   {
     id: 2,
@@ -18,5 +19,6 @@ export const routes = [
     text: "Лента заказов",
     active: null,
     padding: "p-5",
+    path: "/",
   },
 ];

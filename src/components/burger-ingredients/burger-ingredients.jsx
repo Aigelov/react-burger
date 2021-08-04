@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { BurgerIngredientsTabsContent } from "../burger-ingredients-tabs-content/burger-ingredients-tabs-content";
 import { BurgerIngredientsTabs } from "../burger-ingredients-tabs/burger-ingredients-tabs";
@@ -8,9 +9,12 @@ import { addIngredient, increaseCount } from "../../services/actions/burger";
 import { ingredientsActions } from "../../services/slices/ingredients";
 import BurgerIngredientsStyles from "./burger-ingredients.module.css";
 import { Spinner } from "../spinner/spinner";
+import { Modal } from "../modal/modal";
 
 export const BurgerIngredients = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
 
   const [visible, setVisible] = useState(false);
   const [ingredient, setIngredient] = useState(null);
@@ -49,6 +53,11 @@ export const BurgerIngredients = () => {
 
     dispatch(addIngredient(selectedIngredient, selectedIngredients));
     dispatch(increaseCount(selectedIngredient));
+
+    history.push({
+      pathname: `/ingredients/${selectedIngredient._id}`,
+      state: { modal: location },
+    });
   };
 
   const tabClickHandler = (tab, tabRef) => {
@@ -116,7 +125,11 @@ export const BurgerIngredients = () => {
         )}
       </section>
 
-      {visible && <IngredientDetails onClose={onModalClose} {...ingredient} />}
+      {visible && (
+        <Modal header="Детали ингредиента" onClose={onModalClose}>
+          <IngredientDetails {...ingredient} />
+        </Modal>
+      )}
     </>
   );
 };

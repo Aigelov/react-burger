@@ -3,6 +3,13 @@
   flex-direction: row;
 }
 
+.link {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+}
+
 .text {
   align-self: center;
 }

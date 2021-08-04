@@ -1,12 +1,16 @@
 import React from "react";
-import { AppHeader } from "./app-header/app-header";
-import { Main } from "./main/main";
+import { BrowserRouter as Router } from "react-router-dom";
+import { useCheckPreviousLogin } from "../services/hooks/check-previous-login";
+import { useUpdateToken } from "../services/hooks/update-token";
+import { Routes } from "../services/routes/routes";
 
 export const App = () => {
+  useCheckPreviousLogin();
+  useUpdateToken();
+
   return (
-    <>
-      <AppHeader />
-      <Main />
-    </>
+    <Router>
+      <Routes />
+    </Router>
   );
 };

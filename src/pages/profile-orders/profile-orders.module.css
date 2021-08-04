@@ -1,0 +1,5 @@
+.profileOrders {
+  display: flex;
+  margin-top: calc(var(--offset-base-size) * 30);
+  width: 100%;
+}
