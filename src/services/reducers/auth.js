@@ -14,35 +14,40 @@ import {
   RESET_PASSWORD_FAILURE,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
-  SET_AUTHENTICATED,
+  SET_EMAIL_RESET,
+  SET_TOKEN_INVALID,
   UPDATE_TOKEN_FAILURE,
   UPDATE_TOKEN_REQUEST,
   UPDATE_TOKEN_SUCCESS,
 } from "../actions/auth";
 
 const initialState = {
-  isAuthenticated: false,
   loading: false,
   user: null,
   accessToken: null,
   refreshToken: null,
+  validToken: true,
+  emailReset: false,
   error: null,
 };
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_AUTHENTICATED: {
+    case SET_TOKEN_INVALID: {
       return {
         ...state,
-        isAuthenticated: true,
-        accessToken: action.tokens.accessToken,
-        refreshToken: action.tokens.refreshToken,
+        validToken: false,
+      };
+    }
+    case SET_EMAIL_RESET: {
+      return {
+        ...state,
+        emailReset: action.emailReset,
       };
     }
     case LOGIN_REQUEST: {
       return {
         ...state,
-        isAuthenticated: false,
         user: action.user,
         error: null,
       };
@@ -50,7 +55,7 @@ export const authReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        isAuthenticated: true,
+        validToken: true,
         user: action.data.user,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
@@ -59,7 +64,7 @@ export const authReducer = (state = initialState, action) => {
     case LOGIN_FAILURE: {
       return {
         ...state,
-        isAuthenticated: false,
+        validToken: false,
         error: action.error.toString(),
       };
     }
@@ -72,7 +77,6 @@ export const authReducer = (state = initialState, action) => {
     case LOGOUT_SUCCESS: {
       return {
         ...state,
-        isAuthenticated: false,
         user: null,
       };
     }
@@ -93,19 +97,20 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
+        validToken: true,
         error: null,
       };
     }
     case UPDATE_TOKEN_FAILURE: {
       return {
         ...state,
+        validToken: false,
         error: action.error.toString(),
       };
     }
     case REGISTER_REQUEST: {
       return {
         ...state,
-        isAuthenticated: false,
         user: action.user,
         error: null,
       };
@@ -113,7 +118,6 @@ export const authReducer = (state = initialState, action) => {
     case REGISTER_SUCCESS: {
       return {
         ...state,
-        isAuthenticated: true,
         user: action.data.user,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
@@ -122,7 +126,6 @@ export const authReducer = (state = initialState, action) => {
     case REGISTER_FAILURE: {
       return {
         ...state,
-        isAuthenticated: false,
         error: action.error.toString(),
       };
     }
@@ -136,6 +139,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        emailReset: true,
       };
     }
     case FORGOT_PASSWORD_FAILURE: {

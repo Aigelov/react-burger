@@ -10,6 +10,9 @@ import {
   DECREASE_COUNT,
   REMOVE_INGREDIENT,
   UPDATE_INGREDIENTS,
+  GET_INGREDIENTS_REQUEST,
+  GET_INGREDIENTS_SUCCESS,
+  GET_INGREDIENTS_FAILURE,
 } from "../actions/burger";
 
 const initialState = {
@@ -18,10 +21,34 @@ const initialState = {
   ingredientsFailed: false,
   selectedIngredients: [],
   selectedIngredient: {},
+  loading: false,
+  error: null,
 };
 
 export const burgerReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_INGREDIENTS_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    }
+    case GET_INGREDIENTS_SUCCESS: {
+      return {
+        ...state,
+        ingredients: action.data,
+        loading: false,
+        error: null,
+      };
+    }
+    case GET_INGREDIENTS_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    }
     case ADD_INGREDIENT: {
       return {
         ...state,

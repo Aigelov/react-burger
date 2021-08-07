@@ -30,7 +30,7 @@ const updateUser = async (form) => {
   const response = await fetch(
     "https://norma.nomoreparties.space/api/auth/user",
     {
-      method: "PUT",
+      method: "PATCH",
       mode: "cors",
       cache: "no-cache",
       credentials: "same-origin",

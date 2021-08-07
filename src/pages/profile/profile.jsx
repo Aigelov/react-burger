@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   EmailInput,
@@ -6,7 +7,10 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ProfileTabs } from "../../components/profile-tabs/profile-tabs";
+import { profileActions } from "../../services/actions/profile";
+import { removeEmptyParams } from "../../services/helpers";
 import ProfileStyles from "./profile.module.css";
+import { useHistory } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -19,18 +23,45 @@ const initialInputErrors = {
 };
 
 export const ProfilePage = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [values, setValues] = useState(initialValues);
   const [inputErrors, setInputErrors] = useState(initialInputErrors);
+  const { user } = useSelector((store) => store.profile);
+
+  useEffect(() => {
+    dispatch(profileActions.getUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      ...user,
+    }));
+  }, [user]);
 
   const onChange = ({ target }) => {
     const { name, value } = target;
+
     setValues({
       ...values,
       [name]: value,
     });
+
     setInputErrors({
       ...inputErrors,
       [name]: false,
+    });
+  };
+
+  const handleSubmit = () => {
+    dispatch(profileActions.updateUser(removeEmptyParams(values)));
+  };
+
+  const handleReset = () => {
+    setValues({
+      ...user,
+      password: "",
     });
   };
 
@@ -58,9 +89,19 @@ export const ProfilePage = () => {
           name={"password"}
         />
         <div className="mb-6" />
-        <Button type="primary" size="medium">
-          Сохранить
-        </Button>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <Button
+            type="primary"
+            size="medium"
+            style={{ marginRight: "16px" }}
+            onClick={handleSubmit}
+          >
+            Сохранить
+          </Button>
+          <Button type="primary" size="medium" onClick={handleReset}>
+            Отмена
+          </Button>
+        </div>
       </div>
     </div>
   );

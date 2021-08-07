@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useCheckPreviousLogin } from "../services/hooks/check-previous-login";
-import { useUpdateToken } from "../services/hooks/update-token";
+import { useDispatch } from "react-redux";
+import { getIngredients } from "../services/actions/burger";
 import { Routes } from "../services/routes/routes";
 
 export const App = () => {
-  useCheckPreviousLogin();
-  useUpdateToken();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
 
   return (
     <Router>

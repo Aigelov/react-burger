@@ -66,3 +66,15 @@ export const decreaseCount = (ingredient, ingredients) => {
     return item;
   });
 };
+
+export const removeEmptyParams = (params) => {
+  const newParams = { ...params };
+
+  for (const key in newParams) {
+    if (!newParams[key]) {
+      delete newParams[key];
+    }
+  }
+
+  return newParams;
+};

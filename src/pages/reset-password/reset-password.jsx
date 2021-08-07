@@ -25,7 +25,7 @@ export const ResetPasswordPage = () => {
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialValues);
   const [inputErrors, setInputErrors] = useState(initialInputErrors);
-  const { isAuthenticated, error } = useSelector((store) => store.auth);
+  const { validToken, emailReset, error } = useSelector((store) => store.auth);
 
   const onChange = ({ target }) => {
     const { name, value } = target;
@@ -47,10 +47,15 @@ export const ResetPasswordPage = () => {
     }
 
     dispatch(authActions.resetPassword(values));
+    dispatch(authActions.setEmailReset(false));
   };
 
-  if (isAuthenticated) {
+  if (validToken) {
     return <Redirect to={{ pathname: "/" }} />;
+  }
+
+  if (!emailReset) {
+    return <Redirect to={{ pathname: "/forgot-password" }} />;
   }
 
   const flexRow = `${ResetPasswordStyles.flexRow} text text_type_main-default text_color_inactive`;

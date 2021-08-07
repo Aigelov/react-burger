@@ -1,6 +1,7 @@
 import { authService } from "../services/auth";
 
-export const SET_AUTHENTICATED = "SET_AUTHENTICATED";
+export const SET_TOKEN_INVALID = "SET_TOKEN_INVALID";
+export const SET_EMAIL_RESET = "SET_EMAIL_RESET";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -26,11 +27,19 @@ export const RESET_PASSWORD_REQUEST = "RESET_PASSWORD_REQUEST";
 export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
 export const RESET_PASSWORD_FAILURE = "RESET_PASSWORD_FAILURE";
 
-const setAuthenticated = (tokens) => {
+const setTokenInvalid = () => {
   return (dispatch) => {
     dispatch({
-      type: SET_AUTHENTICATED,
-      tokens,
+      type: SET_TOKEN_INVALID,
+    });
+  };
+};
+
+const setEmailReset = (emailReset) => {
+  return (dispatch) => {
+    dispatch({
+      type: SET_EMAIL_RESET,
+      emailReset,
     });
   };
 };
@@ -138,7 +147,8 @@ const resetPassword = (form) => {
 };
 
 export const authActions = {
-  setAuthenticated,
+  setTokenInvalid,
+  setEmailReset,
   login,
   logout,
   updateToken,

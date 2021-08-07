@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { useHistory } from "react-router-dom";
 import { DndProvider } from "react-dnd";
 import { useAlert } from "react-alert";
 import { addIngredient, increaseCount } from "../../services/actions/burger";
@@ -9,11 +10,18 @@ import { BurgerConstructor } from "../../components/burger-constructor/burger-co
 
 export const BurgerProviderPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const { ingredients } = useSelector((store) => store.ingredientsReducer);
+  const { ingredients } = useSelector((store) => store.burger);
   const { selectedIngredients } = useSelector((store) => store.burger);
 
   const alert = useAlert();
+
+  useEffect(() => {
+    if (history.action === "POP") {
+      history.push(history.location.pathname);
+    }
+  }, [history]);
 
   const handleDrop = (draggedItem) => {
     const ingredient = ingredients

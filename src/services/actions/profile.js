@@ -25,6 +25,9 @@ const getUser = () => {
 
       if (err.message === "jwt expired" && refreshToken) {
         dispatch(authActions.updateToken(refreshToken));
+        getUser();
+
+        return;
       }
 
       dispatch(failure(err));
@@ -48,6 +51,9 @@ const updateUser = (form) => {
 
       if (err.message === "jwt expired" && refreshToken) {
         dispatch(authActions.updateToken(refreshToken));
+        updateUser();
+
+        return;
       }
 
       dispatch(failure(err));

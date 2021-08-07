@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { OrderDetails } from "../order-details/order-details";
 import { setOrderNumber } from "../../services/slices/order";
@@ -9,12 +10,13 @@ const CHECKOUT_URL = "https://norma.nomoreparties.space/api/orders";
 
 export const OrderButton = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [visible, setVisible] = useState(false);
 
   const { selectedIngredients: ingredients } = useSelector(
     (store) => store.burger
   );
+  const { validToken } = useSelector((store) => store.auth);
 
   const onModalClose = () => {
     setVisible(false);
@@ -23,6 +25,10 @@ export const OrderButton = () => {
   const ingredientIDs = ingredients.map((item) => item._id);
 
   const checkoutHandler = async () => {
+    if (!validToken) {
+      history.push("/login");
+    }
+
     try {
       const bun = ingredients.filter((item) => item.type === "bun");
 
@@ -34,6 +40,7 @@ export const OrderButton = () => {
       const body = JSON.stringify({
         ingredients: ingredientIDs,
       });
+
       const res = await fetch(CHECKOUT_URL, {
         method: "POST",
         headers: {

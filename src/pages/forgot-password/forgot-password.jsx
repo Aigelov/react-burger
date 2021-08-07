@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import {
   Button,
   EmailInput,
@@ -10,8 +10,15 @@ import { authActions } from "../../services/actions/auth";
 
 export const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [values, setValues] = useState({ email: "" });
-  const { isAuthenticated, error } = useSelector((store) => store.auth);
+  const { validToken, emailReset, error } = useSelector((store) => store.auth);
+
+  useEffect(() => {
+    if (emailReset) {
+      history.replace("/reset-password");
+    }
+  }, [history, emailReset]);
 
   const onChange = ({ target }) => {
     setValues({ email: target.value });
@@ -21,7 +28,7 @@ export const ForgotPasswordPage = () => {
     dispatch(authActions.forgotPassword(values.email));
   };
 
-  if (isAuthenticated) {
+  if (validToken) {
     return <Redirect to={{ pathname: "/" }} />;
   }
 

@@ -135,7 +135,9 @@ const forgotPassword = async (email) => {
       },
       redirect: "follow",
       referrerPolicy: "no-referrer",
-      body: JSON.stringify(email),
+      body: JSON.stringify({
+        email,
+      }),
     }
   );
 

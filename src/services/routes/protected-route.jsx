@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { authActions } from "../actions/auth";
 
 export const ProtectedRoute = ({ children, ...rest }) => {
-  const { isAuthenticated } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  const hasToken = localStorage.getItem("refreshToken");
+  const { validToken } = useSelector((store) => store.auth);
+
+  useEffect(() => {
+    if (hasToken) {
+      dispatch(authActions.updateToken(hasToken));
+    } else {
+      dispatch(authActions.setTokenInvalid());
+    }
+  }, [dispatch]);
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        isAuthenticated ? (
+        hasToken && validToken ? (
           children
         ) : (
           <Redirect to={{ pathname: "/login", state: { from: location } }} />

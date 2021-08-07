@@ -18,7 +18,7 @@ export const LoginPage = () => {
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialValues);
   const { location } = useHistory();
-  const { isAuthenticated, error } = useSelector((store) => store.auth);
+  const { validToken, error } = useSelector((store) => store.auth);
 
   const onChange = ({ target }) => {
     const { name, value } = target;
@@ -33,7 +33,7 @@ export const LoginPage = () => {
     dispatch(authActions.login(values));
   };
 
-  if (isAuthenticated) {
+  if (validToken) {
     return (
       <Redirect to={{ pathname: location.state?.from?.pathname || "/" }} />
     );
