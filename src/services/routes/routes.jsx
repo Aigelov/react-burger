@@ -39,14 +39,17 @@ export const Routes = () => {
           <Route path="/reset-password" exact={true}>
             <ResetPasswordPage />
           </Route>
+          <Route path={`/ingredients/:ingredientId`}>
+            <Ingredient />
+          </Route>
+          <Route path="/profile/orders" exact={true}>
+            <ProfileOrders />
+          </Route>
           <Route path="/" exact={true}>
             <BurgerProviderPage />
           </Route>
           <ProtectedRoute path="/profile" exact={true}>
             <ProfilePage />
-          </ProtectedRoute>
-          <ProtectedRoute path="/profile/orders" exact={true}>
-            <ProfileOrders />
           </ProtectedRoute>
           <ProtectedRoute path="/profile/orders/:orderId" exact={true}>
             <ProfileOrder />
@@ -56,9 +59,6 @@ export const Routes = () => {
           </ProtectedRoute>
           <ProtectedRoute path="/feed/:feedId" exact={true}>
             <Feed />
-          </ProtectedRoute>
-          <ProtectedRoute path={`/ingredients/:ingredientId`}>
-            <Ingredient />
           </ProtectedRoute>
           <Route path="*">
             <NoMatch />

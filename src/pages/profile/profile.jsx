@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
 import {
   Button,
   EmailInput,
@@ -10,7 +11,6 @@ import { ProfileTabs } from "../../components/profile-tabs/profile-tabs";
 import { profileActions } from "../../services/actions/profile";
 import { removeEmptyParams } from "../../services/helpers";
 import ProfileStyles from "./profile.module.css";
-import { useHistory } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -24,10 +24,10 @@ const initialInputErrors = {
 
 export const ProfilePage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [values, setValues] = useState(initialValues);
   const [inputErrors, setInputErrors] = useState(initialInputErrors);
   const { user } = useSelector((store) => store.profile);
+  const alert = useAlert();
 
   useEffect(() => {
     dispatch(profileActions.getUser());
@@ -56,6 +56,11 @@ export const ProfilePage = () => {
 
   const handleSubmit = () => {
     dispatch(profileActions.updateUser(removeEmptyParams(values)));
+    setValues((prevValues) => ({
+      ...prevValues,
+      password: "",
+    }));
+    alert.show("Пользователь успешно изменен");
   };
 
   const handleReset = () => {

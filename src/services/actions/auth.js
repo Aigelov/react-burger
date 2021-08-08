@@ -1,6 +1,7 @@
 import { authService } from "../services/auth";
+import { setCookie } from "../helpers-cookie";
 
-export const SET_TOKEN_INVALID = "SET_TOKEN_INVALID";
+export const SET_AUTHORIZATION = "SET_AUTHORIZATION";
 export const SET_EMAIL_RESET = "SET_EMAIL_RESET";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
@@ -27,10 +28,15 @@ export const RESET_PASSWORD_REQUEST = "RESET_PASSWORD_REQUEST";
 export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
 export const RESET_PASSWORD_FAILURE = "RESET_PASSWORD_FAILURE";
 
-const setTokenInvalid = () => {
+const setAuthorization = ({ accessToken, refreshToken }) => {
   return (dispatch) => {
+    setCookie("token", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+
     dispatch({
-      type: SET_TOKEN_INVALID,
+      type: SET_AUTHORIZATION,
+      accessToken,
+      refreshToken,
     });
   };
 };
@@ -45,7 +51,7 @@ const setEmailReset = (emailReset) => {
 };
 
 const login = (form) => {
-  const request = (user) => ({ type: LOGIN_REQUEST, user });
+  const request = () => ({ type: LOGIN_REQUEST });
   const success = (data) => ({ type: LOGIN_SUCCESS, data });
   const failure = (error) => ({ type: LOGIN_FAILURE, error });
 
@@ -96,7 +102,7 @@ const updateToken = (token) => {
 };
 
 const register = (form) => {
-  const request = (user) => ({ type: REGISTER_REQUEST, user });
+  const request = () => ({ type: REGISTER_REQUEST });
   const success = (data) => ({ type: REGISTER_SUCCESS, data });
   const failure = (error) => ({ type: REGISTER_FAILURE, error });
 
@@ -147,7 +153,7 @@ const resetPassword = (form) => {
 };
 
 export const authActions = {
-  setTokenInvalid,
+  setAuthorization,
   setEmailReset,
   login,
   logout,

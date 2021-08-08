@@ -14,8 +14,8 @@ import {
   RESET_PASSWORD_FAILURE,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
+  SET_AUTHORIZATION,
   SET_EMAIL_RESET,
-  SET_TOKEN_INVALID,
   UPDATE_TOKEN_FAILURE,
   UPDATE_TOKEN_REQUEST,
   UPDATE_TOKEN_SUCCESS,
@@ -26,17 +26,19 @@ const initialState = {
   user: null,
   accessToken: null,
   refreshToken: null,
-  validToken: true,
+  isAuthorized: false,
   emailReset: false,
   error: null,
 };
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_TOKEN_INVALID: {
+    case SET_AUTHORIZATION: {
       return {
         ...state,
-        validToken: false,
+        isAuthorized: true,
+        accessToken: action.accessToken,
+        refreshToken: action.refreshToken,
       };
     }
     case SET_EMAIL_RESET: {
@@ -48,14 +50,13 @@ export const authReducer = (state = initialState, action) => {
     case LOGIN_REQUEST: {
       return {
         ...state,
-        user: action.user,
         error: null,
       };
     }
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        validToken: true,
+        isAuthorized: true,
         user: action.data.user,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
@@ -64,7 +65,7 @@ export const authReducer = (state = initialState, action) => {
     case LOGIN_FAILURE: {
       return {
         ...state,
-        validToken: false,
+        isAuthorized: false,
         error: action.error.toString(),
       };
     }
@@ -78,6 +79,9 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: null,
+        isAuthorized: false,
+        accessToken: null,
+        refreshToken: null,
       };
     }
     case LOGOUT_FAILURE: {
@@ -95,23 +99,24 @@ export const authReducer = (state = initialState, action) => {
     case UPDATE_TOKEN_SUCCESS: {
       return {
         ...state,
+        isAuthorized: true,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
-        validToken: true,
         error: null,
       };
     }
     case UPDATE_TOKEN_FAILURE: {
       return {
         ...state,
-        validToken: false,
+        isAuthorized: false,
+        accessToken: null,
+        refreshToken: null,
         error: action.error.toString(),
       };
     }
     case REGISTER_REQUEST: {
       return {
         ...state,
-        user: action.user,
         error: null,
       };
     }
@@ -119,6 +124,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.data.user,
+        isAuthorized: true,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
       };
@@ -126,6 +132,7 @@ export const authReducer = (state = initialState, action) => {
     case REGISTER_FAILURE: {
       return {
         ...state,
+        isAuthorized: false,
         error: action.error.toString(),
       };
     }

@@ -16,7 +16,7 @@ export const OrderButton = () => {
   const { selectedIngredients: ingredients } = useSelector(
     (store) => store.burger
   );
-  const { validToken } = useSelector((store) => store.auth);
+  const { isAuthorized } = useSelector((store) => store.auth);
 
   const onModalClose = () => {
     setVisible(false);
@@ -25,7 +25,7 @@ export const OrderButton = () => {
   const ingredientIDs = ingredients.map((item) => item._id);
 
   const checkoutHandler = async () => {
-    if (!validToken) {
+    if (!isAuthorized) {
       history.push("/login");
     }
 

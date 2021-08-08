@@ -29,7 +29,8 @@ export const RegisterPage = () => {
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialValues);
   const [inputErrors, setInputErrors] = useState(initialInputErrors);
-  const { validToken, error } = useSelector((store) => store.auth);
+  const { error } = useSelector((store) => store.auth);
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const onChange = ({ target }) => {
     const { name, value } = target;
@@ -53,7 +54,7 @@ export const RegisterPage = () => {
     dispatch(authActions.register(values));
   };
 
-  if (validToken) {
+  if (refreshToken) {
     return <Redirect to={{ pathname: "/" }} />;
   }
 

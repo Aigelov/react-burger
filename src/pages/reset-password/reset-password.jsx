@@ -25,7 +25,9 @@ export const ResetPasswordPage = () => {
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialValues);
   const [inputErrors, setInputErrors] = useState(initialInputErrors);
-  const { validToken, emailReset, error } = useSelector((store) => store.auth);
+  const { isAuthorized, emailReset, error } = useSelector(
+    (store) => store.auth
+  );
 
   const onChange = ({ target }) => {
     const { name, value } = target;
@@ -50,7 +52,7 @@ export const ResetPasswordPage = () => {
     dispatch(authActions.setEmailReset(false));
   };
 
-  if (validToken) {
+  if (isAuthorized) {
     return <Redirect to={{ pathname: "/" }} />;
   }
 

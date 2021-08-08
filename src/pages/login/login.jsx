@@ -18,7 +18,13 @@ export const LoginPage = () => {
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialValues);
   const { location } = useHistory();
-  const { validToken, error } = useSelector((store) => store.auth);
+  const { isAuthorized, error } = useSelector((store) => store.auth);
+
+  if (isAuthorized) {
+    return (
+      <Redirect to={{ pathname: location.state?.from?.pathname || "/" }} />
+    );
+  }
 
   const onChange = ({ target }) => {
     const { name, value } = target;
@@ -32,12 +38,6 @@ export const LoginPage = () => {
   const handleLogin = () => {
     dispatch(authActions.login(values));
   };
-
-  if (validToken) {
-    return (
-      <Redirect to={{ pathname: location.state?.from?.pathname || "/" }} />
-    );
-  }
 
   const flexRow = `${LoginStyles.flexRow} text text_type_main-default text_color_inactive`;
   const errorDiv = `${LoginStyles.error} mt-6 mb-8`;

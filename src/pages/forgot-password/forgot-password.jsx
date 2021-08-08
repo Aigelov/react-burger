@@ -12,7 +12,8 @@ export const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [values, setValues] = useState({ email: "" });
-  const { validToken, emailReset, error } = useSelector((store) => store.auth);
+  const { emailReset, error } = useSelector((store) => store.auth);
+  const refreshToken = localStorage.getItem("refreshToken");
 
   useEffect(() => {
     if (emailReset) {
@@ -28,7 +29,7 @@ export const ForgotPasswordPage = () => {
     dispatch(authActions.forgotPassword(values.email));
   };
 
-  if (validToken) {
+  if (refreshToken) {
     return <Redirect to={{ pathname: "/" }} />;
   }
 
