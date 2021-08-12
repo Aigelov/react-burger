@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import headerStyles from "./app-header.module.css";
-import { Profile } from "../profile/profile";
+import { ProfileHeader } from "../profile-header/profile-header";
 import { Menu } from "../menu/menu";
 
 export const AppHeader = () => {
@@ -12,10 +13,10 @@ export const AppHeader = () => {
     <header className={headerWrapperStyle}>
       <div className={headerStyle}>
         <Menu />
-        <span className={headerStyles.logo}>
+        <Link to="/" className={headerStyles.logo}>
           <Logo />
-        </span>
-        <Profile />
+        </Link>
+        <ProfileHeader />
       </div>
     </header>
   );

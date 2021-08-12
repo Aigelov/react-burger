@@ -2,43 +2,48 @@ import React from "react";
 import PropTypes from "prop-types";
 import { IngredientDetailsItem } from "../ingredient-details-item/ingredient-details-item";
 import IngredientStyles from "./ingredient-details.module.css";
-import { Modal } from "../modal/modal";
 
-export const IngredientDetails = ({ onClose, ...ingredient }) => {
+export const IngredientDetails = ({
+  _id,
+  name,
+  image_large,
+  calories,
+  proteins,
+  fat,
+  carbohydrates,
+}) => {
   const helpfulnessStyle = `${IngredientStyles.helpfulness} mt-8`;
   const titleStyle = `${IngredientStyles.title} text text_type_main-medium`;
 
   const details = [
     {
       title: "Калории,ккал",
-      info: ingredient.calories,
+      info: calories,
     },
     {
       title: "Белки, г",
-      info: ingredient.proteins,
+      info: proteins,
     },
     {
       title: "Жиры, г",
-      info: ingredient.fat,
+      info: fat,
     },
     {
       title: "Углеводы, г",
-      info: ingredient.carbohydrates,
+      info: carbohydrates,
     },
   ];
 
   return (
-    <Modal header="Детали ингредиента" onClose={onClose}>
-      <div className={IngredientStyles.ingredientDetails}>
-        <img src={ingredient.image_large} alt="Ingredient" />
-        <span className={titleStyle}>{ingredient.name}</span>
-        <span className={helpfulnessStyle}>
-          {details.map((detail) => (
-            <IngredientDetailsItem key={detail.title} {...detail} />
-          ))}
-        </span>
-      </div>
-    </Modal>
+    <div className={IngredientStyles.ingredientDetails}>
+      <img src={image_large} alt="Ingredient" />
+      <span className={titleStyle}>{name}</span>
+      <span className={helpfulnessStyle}>
+        {details.map((detail) => (
+          <IngredientDetailsItem key={detail.title} {...detail} />
+        ))}
+      </span>
+    </div>
   );
 };
 

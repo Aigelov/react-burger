@@ -1,16 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { NavLink, useHistory } from "react-router-dom";
 import HeaderItemStyles from "./header-item.module.css";
 
-export const HeaderItem = ({ svgIcon, text, active }) => {
+export const HeaderItem = ({ svgIcon, text, path = "/" }) => {
+  const { location } = useHistory();
+  const { pathname } = location;
+
   const headerItemStyle = `${HeaderItemStyles.menuItem} mb-3 mt-3 ml-5 mr-5`;
-  const textState = active ? HeaderItemStyles[active] : "text_color_inactive";
-  const headerItemText = `${HeaderItemStyles.text} ${textState} text text_type_main-default pl-2`;
+  const headerItemText = `${HeaderItemStyles.text} text text_type_main-default pl-2`;
+  const headerNavLinkStyle = `${HeaderItemStyles.link} text_color_inactive`;
 
   return (
     <li className={headerItemStyle}>
-      {svgIcon}
-      <p className={headerItemText}>{text}</p>
+      <NavLink
+        to={path}
+        className={headerNavLinkStyle}
+        activeClassName={pathname === path ? HeaderItemStyles.active : null}
+      >
+        {svgIcon}
+        <p className={headerItemText}>{text}</p>
+      </NavLink>
     </li>
   );
 };
