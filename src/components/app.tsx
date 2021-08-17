@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useCheckPreviousLogin } from "../services/hooks/check-previous-login";
-import { getIngredients } from "../services/actions/burger";
+import { WS_CONNECTION_START } from "../services/action-types";
+import { getIngredients } from "../services/actions";
 import { Routes } from "../services/routes/routes";
 
 export const App = () => {
@@ -12,6 +13,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(getIngredients());
+    dispatch({ type: WS_CONNECTION_START });
   }, [dispatch]);
 
   return (

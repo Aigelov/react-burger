@@ -94,3 +94,8 @@ ul {
 #__react-alert__ > div > div > div {
   background-color: #444 !important;
 }
+
+#react-modals {
+  position: relative;
+  z-index: 100;
+}

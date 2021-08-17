@@ -1,0 +1,8 @@
+.feedsWrapper {
+  width: calc(100% - var(--offset-base-size) * 5);
+}
+
+.feeds {
+  display: flex;
+  flex-direction: row;
+}

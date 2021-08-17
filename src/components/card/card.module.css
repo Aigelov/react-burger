@@ -1,0 +1,44 @@
+.cards {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: calc(var(--offset-base-size) * 4);
+  margin-right: 8px;
+}
+
+.card {
+  background: #1C1C21;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.04);
+  padding: calc(var(--offset-base-size) * 6);
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cardIngredients {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-left: calc(var(--offset-base-size) * 3);
+  margin-right: calc(var(--offset-base-size) * 6);
+}
+
+.price {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.currencyIcon {
+  margin-top: calc(var(--offset-base-size) * 1);
+}

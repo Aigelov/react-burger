@@ -6,8 +6,8 @@ import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { authActions } from "../../services/actions";
 import LoginStyles from "./login.module.css";
-import { authActions } from "../../services/actions/auth";
 
 const initialValues = {
   email: "",

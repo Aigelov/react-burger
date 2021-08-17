@@ -1,0 +1,8 @@
+.cardsWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  margin-right: calc(var(--offset-base-size) * 7.5);
+  overflow-y: auto;
+  width: calc(50% - calc(var(--offset-base-size) * 7.5));
+}

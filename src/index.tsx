@@ -7,8 +7,10 @@ import AlertTemplate from "react-alert-template-basic";
 import reportWebVitals from "./reportWebVitals";
 import { alertOptions } from "./alert";
 import { App } from "./components/app";
-import { store } from "./store";
+import { initStore } from "./store";
 import "./index.css";
+
+const store = initStore();
 
 ReactDOM.render(
   <React.StrictMode>

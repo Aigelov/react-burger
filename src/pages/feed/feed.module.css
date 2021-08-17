@@ -1,0 +1,5 @@
+.feed {
+  display: flex;
+  margin-top: calc(var(--offset-base-size) * 20);
+  width: 100%;
+}

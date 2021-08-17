@@ -5,6 +5,7 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { OrderDetails } from "../order-details/order-details";
 import { setOrderNumber } from "../../services/slices/order";
 import { Modal } from "../modal/modal";
+import { wsSendMessage } from "../../services/actions";
 
 const CHECKOUT_URL = "https://norma.nomoreparties.space/api/orders";
 
@@ -55,6 +56,13 @@ export const OrderButton = () => {
 
       const response = await res.json();
       dispatch(setOrderNumber(response?.order?.number));
+      dispatch(
+        wsSendMessage({
+          name: response?.name,
+          orderNumber: response?.order?.number,
+          ingredientIDs,
+        })
+      );
 
       setVisible(true);
     } catch (err) {

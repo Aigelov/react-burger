@@ -2,6 +2,7 @@ import { authService } from "../services/auth";
 import { setCookie } from "../helpers-cookie";
 
 export const SET_AUTHORIZATION = "SET_AUTHORIZATION";
+export const CLEAR_AUTHORIZATION = "CLEAR_AUTHORIZATION";
 export const SET_EMAIL_RESET = "SET_EMAIL_RESET";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
@@ -30,6 +31,8 @@ export const RESET_PASSWORD_FAILURE = "RESET_PASSWORD_FAILURE";
 
 const setAuthorization = ({ accessToken, refreshToken }) => {
   return (dispatch) => {
+    authService.removeTokens();
+
     setCookie("token", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
 
@@ -37,6 +40,16 @@ const setAuthorization = ({ accessToken, refreshToken }) => {
       type: SET_AUTHORIZATION,
       accessToken,
       refreshToken,
+    });
+  };
+};
+
+const clearAuthorization = () => {
+  return (dispatch) => {
+    authService.removeTokens();
+
+    dispatch({
+      type: CLEAR_AUTHORIZATION,
     });
   };
 };
@@ -154,6 +167,7 @@ const resetPassword = (form) => {
 
 export const authActions = {
   setAuthorization,
+  clearAuthorization,
   setEmailReset,
   login,
   logout,

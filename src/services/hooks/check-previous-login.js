@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../actions/auth";
+import { authActions } from "../actions";
 import { getCookie } from "../helpers-cookie";
 
 export const useCheckPreviousLogin = () => {

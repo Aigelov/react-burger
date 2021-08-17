@@ -68,6 +68,10 @@ export const BurgerIngredients = () => {
 
   const onModalClose = () => {
     setVisible(false);
+
+    history.push({
+      pathname: "/",
+    });
   };
 
   const burgerIngredientsStyle = `${BurgerIngredientsStyles.burgerIngredients} mt-10 mr-5`;
