@@ -13,7 +13,7 @@ import {
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILURE,
-} from "../actions/burger";
+} from "../actions";
 
 const initialState = {
   ingredients: [],

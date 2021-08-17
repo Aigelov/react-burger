@@ -5,20 +5,24 @@ const START_INDEX = 10;
 const MORE_THAN = 4;
 
 export const FeedCard = ({ ingredient, ingredientsCount, index }) => {
-  if (index > MORE_THAN) {
+  if (index + 1 > MORE_THAN) {
     return null;
   }
+
+  const showMore = ingredientsCount - MORE_THAN;
 
   return (
     <div
       className={FeedCardStyles.cardIngredient}
       style={{ zIndex: START_INDEX - index }}
     >
-      {ingredientsCount > MORE_THAN && index === MORE_THAN && (
+      {ingredientsCount > MORE_THAN && index + 1 === MORE_THAN && (
         <div className={FeedCardStyles.hasMore}>
-          <div className="text text_type_digits-default">
-            +{ingredientsCount - MORE_THAN - 1}
-          </div>
+          {showMore > 0 && (
+            <div className="text text_type_digits-default">
+              +{ingredientsCount - MORE_THAN}
+            </div>
+          )}
         </div>
       )}
       <img src={`/ingredient-preview/${ingredient}.png`} alt="Ingredient" />

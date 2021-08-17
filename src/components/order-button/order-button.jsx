@@ -5,7 +5,8 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { OrderDetails } from "../order-details/order-details";
 import { setOrderNumber } from "../../services/slices/order";
 import { Modal } from "../modal/modal";
-import { wsSendMessage } from "../../services/actions";
+import { authActions, wsSendMessage } from "../../services/actions";
+import { getCookie } from "../../services/helpers-cookie";
 
 const CHECKOUT_URL = "https://norma.nomoreparties.space/api/orders";
 
@@ -46,6 +47,7 @@ export const OrderButton = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${getCookie("token")}`,
         },
         body,
       });

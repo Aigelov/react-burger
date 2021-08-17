@@ -2,10 +2,25 @@ import React, { Fragment } from "react";
 import { PerformedOrders } from "../performed-orders/performed-orders";
 import OrderStatusListStyles from "./order-status-list.module.css";
 
-const readyOrders = ["034533", "034532", "034531", "034530", "034529"];
-const inProgressOrders = ["034538", "034541", "034542"];
+const LIMIT_ORDERS = 10;
 
-export const OrderStatusList = () => {
+export const OrderStatusList = ({ total, totalToday, ...props }) => {
+  const { orders } = props;
+
+  const readyOrders = orders
+    .filter((item, index) => item.status === "done" && index < LIMIT_ORDERS)
+    .map((item) => ({
+      _id: item._id,
+      number: item.number,
+    }));
+
+  const pendingOrders = orders
+    .filter((item, index) => item.status === "pending" && index < LIMIT_ORDERS)
+    .map((item) => ({
+      _id: item._id,
+      number: item.number,
+    }));
+
   return (
     <div className={OrderStatusListStyles.ordersStatusList}>
       <div className={OrderStatusListStyles.ordersReadyAndInProgress}>
@@ -13,12 +28,12 @@ export const OrderStatusList = () => {
           <div className="text text_type_main-medium">Готовы:</div>
           <div className="mb-6" />
           {readyOrders.map((order) => (
-            <Fragment key={order}>
+            <Fragment key={order._id}>
               <div
                 className="text text_type_digits-default"
                 style={{ color: "#00CCCC" }}
               >
-                {order}
+                {order.number}
               </div>
               <div className="mb-2" />
             </Fragment>
@@ -27,9 +42,11 @@ export const OrderStatusList = () => {
         <div>
           <div className="text text_type_main-medium">В работе:</div>
           <div className="mb-6" />
-          {inProgressOrders.map((order) => (
-            <Fragment key={order}>
-              <div className="text text_type_digits-default">{order}</div>
+          {pendingOrders.map((order) => (
+            <Fragment key={order._id}>
+              <div className="text text_type_digits-default">
+                {order.number}
+              </div>
               <div className="mb-2" />
             </Fragment>
           ))}
@@ -38,11 +55,11 @@ export const OrderStatusList = () => {
 
       <div className="mb-15" />
 
-      <PerformedOrders text="Выполнено за все время" amount={28752} />
+      <PerformedOrders text="Выполнено за все время" amount={total} />
 
       <div className="mb-15" />
 
-      <PerformedOrders text="Выполнено за сегодня" amount={138} />
+      <PerformedOrders text="Выполнено за сегодня" amount={totalToday} />
     </div>
   );
 };

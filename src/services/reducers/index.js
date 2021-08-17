@@ -4,6 +4,7 @@ import { profileReducer } from "./profile";
 import { burgerReducer } from "./burger";
 import { authReducer } from "./auth";
 import { wsReducer } from "./ws-reducer";
+import { wsUserReducer } from "./ws-user-reducer";
 
 export const rootReducer = combineReducers({
   burger: burgerReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   profile: profileReducer,
   orderSliceReducer,
   wsReducer,
+  wsUserReducer,
 });
