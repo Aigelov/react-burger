@@ -6,7 +6,7 @@ import {
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ForgotPasswordStyles from "./forgot-password.module.css";
-import { authActions } from "../../services/actions/auth";
+import { authActions } from "../../services/actions";
 
 export const ForgotPasswordPage = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,13 @@ export const ForgotPasswordPage = () => {
     setValues({ email: target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!values.email || !values.email.trim()) {
+      return;
+    }
+
     dispatch(authActions.forgotPassword(values.email));
   };
 
@@ -37,12 +43,15 @@ export const ForgotPasswordPage = () => {
   const errorDiv = `${ForgotPasswordStyles.error} mt-6 mb-4`;
 
   return (
-    <div className={ForgotPasswordStyles.forgotPassword}>
+    <form
+      onSubmit={handleSubmit}
+      className={ForgotPasswordStyles.forgotPassword}
+    >
       <div className="text text_type_main-medium">Восстановление пароля</div>
       <div className="mb-4" />
       <EmailInput onChange={onChange} value={values.email} name={"email"} />
       <div className="mb-6" />
-      <Button type="primary" size="medium" onClick={handleSubmit}>
+      <Button type="primary" size="medium">
         Восстановить
       </Button>
       {error && <div className={errorDiv}>{error}</div>}
@@ -56,6 +65,6 @@ export const ForgotPasswordPage = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </form>
   );
 };

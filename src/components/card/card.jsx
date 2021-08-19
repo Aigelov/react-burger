@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { format } from "date-fns";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { STATUS_TYPES } from "../_constants/status-types";
 import { FeedCard } from "../feed-card/feed-card";
 import CardStyles from "./card.module.css";
 
 export const Card = ({ order, ingredients, cardClickHandler }) => {
+  const { location } = useHistory();
+  const [showOrderStatus, setShowOrderStatus] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === "/profile/orders") {
+      setShowOrderStatus(true);
+    }
+  }, [location.pathname]);
+
   const totalPrice = ingredients
     .filter((item) => order.ingredients.includes(item._id))
     .reduce((total, cur) => total + cur.price, 0);
@@ -20,6 +31,17 @@ export const Card = ({ order, ingredients, cardClickHandler }) => {
         </div>
         <div className="mb-6" />
         <div className="text text_type_main-medium">{order.name}</div>
+        {showOrderStatus && (
+          <>
+            <div className="mb-2" />
+            <div
+              className="text text_type_digits-small"
+              style={{ color: "#00CCCC" }}
+            >
+              {STATUS_TYPES[order.status]}
+            </div>
+          </>
+        )}
         <div className="mb-6" />
         <div className={CardStyles.cardInfo}>
           <div className={CardStyles.cardIngredients}>

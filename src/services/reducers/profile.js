@@ -5,7 +5,7 @@ import {
   UPDATE_USER_FAILURE,
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
-} from "../actions/profile";
+} from "../actions";
 
 const initialState = {
   error: null,

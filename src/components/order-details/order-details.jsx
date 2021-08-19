@@ -1,17 +1,25 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearBurgerConstructor } from "../../services/actions";
 import OrderAcceptedStyles from "./order-details.module.css";
 import Done from "../../images/done.svg";
 
 export const OrderDetails = () => {
-  const { orderNumber } = useSelector((store) => store.orderSliceReducer);
+  const dispatch = useDispatch();
+  const { order } = useSelector((store) => store.orderReducer);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearBurgerConstructor());
+    };
+  }, [dispatch]);
 
   const orderIdStyle = `${OrderAcceptedStyles.orderId} text text_type_digits-large`;
   const textGreyStyle = `${OrderAcceptedStyles.textGrey} text text_type_main-default mt-2`;
 
   return (
     <div className={OrderAcceptedStyles.orderAccepted}>
-      <span className={orderIdStyle}>{orderNumber}</span>
+      <span className={orderIdStyle}>{order.number}</span>
       <span className="text text_type_main-medium mt-8">
         идентификатор заказа
       </span>

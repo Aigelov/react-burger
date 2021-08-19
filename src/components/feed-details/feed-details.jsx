@@ -1,13 +1,8 @@
 import React, { Fragment } from "react";
-import FeedDetailsStyles from "./feed-details.module.css";
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { format } from "date-fns";
-
-const statusTypes = {
-  done: "Выполнен",
-  pending: "Готовится",
-  created: "Создан",
-};
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import FeedDetailsStyles from "./feed-details.module.css";
+import { STATUS_TYPES } from "../_constants/status-types";
 
 export const FeedDetails = ({ orderId, ingredients, ordersAll }) => {
   const { orders } = ordersAll;
@@ -51,7 +46,7 @@ export const FeedDetails = ({ orderId, ingredients, ordersAll }) => {
       <div className="text text_type_main-medium">{order.name}</div>
       <div className="mb-3" />
       <div className="text text_type_digits-small" style={{ color: "#00CCCC" }}>
-        {statusTypes[order.status]}
+        {STATUS_TYPES[order.status]}
       </div>
       <div className="mb-15" />
       <div className="text text_type_main-medium">Состав:</div>

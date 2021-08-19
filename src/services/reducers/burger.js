@@ -13,6 +13,7 @@ import {
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILURE,
+  CLEAR_SELECTED_INGREDIENTS,
 } from "../actions";
 
 const initialState = {
@@ -75,6 +76,19 @@ export const burgerReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedIngredients,
+      };
+    }
+    case CLEAR_SELECTED_INGREDIENTS: {
+      const newIngredients = state.ingredients.map((item) => {
+        item.count = 0;
+
+        return item;
+      });
+
+      return {
+        ...state,
+        selectedIngredients: [],
+        ingredients: newIngredients,
       };
     }
     case INCREASE_COUNT: {

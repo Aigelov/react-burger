@@ -9,7 +9,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { validateFields } from "../../services/validate/validate";
 import RegisterStyles from "./register.module.css";
-import { authActions } from "../../services/actions/auth";
+import { authActions } from "../../services/actions";
 
 const initialValues = {
   name: "",
@@ -46,7 +46,9 @@ export const RegisterPage = () => {
     });
   };
 
-  const handleRegister = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
+
     if (!validateFields(fields, values, setInputErrors)) {
       return;
     }
@@ -63,41 +65,43 @@ export const RegisterPage = () => {
 
   return (
     <div className={RegisterStyles.register}>
-      <div className="text text_type_main-medium">Регистрация</div>
-      <div className="mb-4" />
-      <Input
-        type={"text"}
-        placeholder={"Имя"}
-        onChange={onChange}
-        value={values.name}
-        name={"name"}
-        size={"default"}
-        error={inputErrors.name}
-        errorText={"Имя обязательное поле"}
-      />
-      <div className="mb-4" />
-      <EmailInput onChange={onChange} value={values.email} name={"email"} />
-      <div className="mb-4" />
-      <PasswordInput
-        onChange={onChange}
-        value={values.password}
-        name={"password"}
-      />
-      <div className="mb-6" />
-      <Button type="primary" size="medium" onClick={handleRegister}>
-        Зарегистрироваться
-      </Button>
-      {error && <div className={errorDiv}>{error}</div>}
-      {!error && <div className="mb-20" />}
-      <div className={flexRow}>
-        <div className="mr-1">Уже зарегистрированы?</div>
+      <form onSubmit={handleRegister}>
+        <div className="text text_type_main-medium">Регистрация</div>
+        <div className="mb-4" />
+        <Input
+          type={"text"}
+          placeholder={"Имя"}
+          onChange={onChange}
+          value={values.name}
+          name={"name"}
+          size={"default"}
+          error={inputErrors.name}
+          errorText={"Имя обязательное поле"}
+        />
+        <div className="mb-4" />
+        <EmailInput onChange={onChange} value={values.email} name={"email"} />
+        <div className="mb-4" />
+        <PasswordInput
+          onChange={onChange}
+          value={values.password}
+          name={"password"}
+        />
+        <div className="mb-6" />
+        <Button type="primary" size="medium">
+          Зарегистрироваться
+        </Button>
+        {error && <div className={errorDiv}>{error}</div>}
+        {!error && <div className="mb-20" />}
+        <div className={flexRow}>
+          <div className="mr-1">Уже зарегистрированы?</div>
 
-        <div>
-          <Link to="/login" className={RegisterStyles.link}>
-            Войти
-          </Link>
+          <div>
+            <Link to="/login" className={RegisterStyles.link}>
+              Войти
+            </Link>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

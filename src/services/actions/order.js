@@ -1,27 +1,27 @@
-import { findAllOrders } from "../services/order";
 import { authActions } from "./auth";
+import { checkoutOrderFetch } from "../services/order";
 
-export const GET_ORDERS_REQUEST = "GET_ORDERS_REQUEST";
-export const GET_ORDERS_SUCCESS = "GET_ORDERS_SUCCESS";
-export const GET_ORDERS_FAILURE = "GET_ORDERS_FAILURE";
+export const CHECKOUT_ORDER_REQUEST = "CHECKOUT_ORDER_REQUEST";
+export const CHECKOUT_ORDER_SUCCESS = "CHECKOUT_ORDER_SUCCESS";
+export const CHECKOUT_ORDER_FAILURE = "CHECKOUT_ORDER_FAILURE";
 
-export const getOrders = () => {
-  const request = () => ({ type: GET_ORDERS_REQUEST });
-  const success = (data) => ({ type: GET_ORDERS_SUCCESS, data });
-  const failure = (error) => ({ type: GET_ORDERS_FAILURE, error });
+export const checkoutOrder = (ingredientIDs) => {
+  const request = () => ({ type: CHECKOUT_ORDER_REQUEST });
+  const success = (data) => ({ type: CHECKOUT_ORDER_SUCCESS, data });
+  const failure = (error) => ({ type: CHECKOUT_ORDER_FAILURE, error });
 
   return async (dispatch) => {
     dispatch(request());
 
     try {
-      const { data } = await findAllOrders();
+      const data = await checkoutOrderFetch(ingredientIDs);
       dispatch(success(data));
     } catch (err) {
       const refreshToken = localStorage.getItem("refreshToken");
 
       if (err.message === "jwt expired" && refreshToken) {
         dispatch(authActions.updateToken(refreshToken));
-        getOrders();
+        checkoutOrder(ingredientIDs);
 
         return;
       }

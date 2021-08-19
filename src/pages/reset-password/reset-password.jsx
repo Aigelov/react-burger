@@ -8,7 +8,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { validateFields } from "../../services/validate/validate";
 import ResetPasswordStyles from "./reset-password.module.css";
-import { authActions } from "../../services/actions/auth";
+import { authActions } from "../../services/actions";
 
 const initialValues = {
   password: "",
@@ -43,7 +43,9 @@ export const ResetPasswordPage = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (!validateFields(fields, values, setInputErrors)) {
       return;
     }
@@ -64,7 +66,7 @@ export const ResetPasswordPage = () => {
   const errorDiv = `${ResetPasswordStyles.error} mt-6 mb-8`;
 
   return (
-    <div className={ResetPasswordStyles.resetPassword}>
+    <form onSubmit={handleSubmit} className={ResetPasswordStyles.resetPassword}>
       <div className="text text_type_main-medium">Восстановление пароля</div>
       <div className="mb-4" />
       <PasswordInput
@@ -84,7 +86,7 @@ export const ResetPasswordPage = () => {
         errorText={"Код обязательное поле"}
       />
       <div className="mb-6" />
-      <Button type="primary" size="medium" onClick={handleSubmit}>
+      <Button type="primary" size="medium">
         Сохранить
       </Button>
       {error && <div className={errorDiv}>{error}</div>}
@@ -98,6 +100,6 @@ export const ResetPasswordPage = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </form>
   );
 };

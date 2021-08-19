@@ -5,6 +5,19 @@ import { Card } from "../card/card";
 export const CardList = ({ cardClickHandler, ingredients, ...props }) => {
   const { orders } = props;
 
+  if (!orders) {
+    return null;
+  }
+
+  if (!orders.length) {
+    return (
+      <div className={CardListStyles.cardsWrapper}>
+        <p>У вас еще нет заказов.</p>
+        <p>Сделайте ваш первый заказ :)</p>
+      </div>
+    );
+  }
+
   return (
     <div className={CardListStyles.cardsWrapper}>
       {orders.map((order) => (
