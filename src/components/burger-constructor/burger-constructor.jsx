@@ -6,7 +6,7 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import { BurgerConstructorItem } from "../burger-constructor-item/burger-constructor-item";
 import { BurgerConstructorBun } from "../burger-constructor-bun/burger-constructor-bun";
 import { constructBurger, constructBurgerBun } from "./construct-burger";
-import { updateIngredients } from "../../services/actions/burger";
+import { updateIngredients } from "../../services/actions";
 import IngredientsStyles from "./burger-constructor.module.css";
 import { OrderButton } from "../order-button/order-button";
 import { TotalPrice } from "../total-price/total-price";
@@ -59,9 +59,6 @@ export const BurgerConstructor = memo(function BurgerConstructor({
 
   const bunIngredient = ingredients.find((item) => item.type === "bun");
 
-  const ingredientStyle = `${IngredientsStyles.ingredients} mt-25 ml-5`;
-  const bottomStyles = `${IngredientsStyles.bottom} mr-3 mt-10 pb-5`;
-
   const borderColorConstructor = isHoverConstructor
     ? "lightgreen"
     : "transparent";
@@ -70,7 +67,7 @@ export const BurgerConstructor = memo(function BurgerConstructor({
   return (
     <section
       ref={dropInConstructor}
-      className={ingredientStyle}
+      className={IngredientsStyles.ingredients}
       style={{ borderColor: borderColorConstructor }}
     >
       {bunIngredient && (
@@ -103,7 +100,7 @@ export const BurgerConstructor = memo(function BurgerConstructor({
       )}
 
       {ingredients.length > 0 && (
-        <span className={bottomStyles}>
+        <span className={IngredientsStyles.bottom}>
           <TotalPrice />
           <span className="ml-2 mr-10 mt-1">
             <CurrencyIcon type="primary" />

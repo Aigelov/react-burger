@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ModalOverlay } from "../modal-overlay/modal-overlay";
 import ModalStyles from "./modal.module.css";
 
@@ -10,9 +10,6 @@ const ESC_CODE = 27;
 const modalRoot = document.getElementById("react-modals");
 
 export const Modal = ({ children, header, onClose }) => {
-  const modalStyle = `${ModalStyles.modal} p-10 pb-25`;
-  const headerStyle = `${ModalStyles.header} mb-10`;
-
   const modalRef = useRef(null);
 
   const keyDownHandler = useCallback(
@@ -45,8 +42,8 @@ export const Modal = ({ children, header, onClose }) => {
 
   return createPortal(
     <ModalOverlay>
-      <div className={modalStyle} ref={modalRef}>
-        <header className={headerStyle}>
+      <div className={ModalStyles.modal} ref={modalRef}>
+        <header className={ModalStyles.header}>
           <span className={ModalStyles.close} onClick={onClose}>
             <CloseIcon type="primary" />
           </span>

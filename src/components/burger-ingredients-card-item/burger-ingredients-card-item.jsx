@@ -25,12 +25,9 @@ export const BurgerIngredientsCardItem = ({
     }),
   });
 
-  const cardStyle = `${CardItemStyles.card} mb-8`;
-  const currencyIconStyle = `${CardItemStyles.currencyIcon} ml-2`;
-
   return (
     <article
-      className={cardStyle}
+      className={CardItemStyles.card}
       onClick={() => ingredientClickHandler(_id)}
       ref={dragRef}
     >
@@ -39,7 +36,7 @@ export const BurgerIngredientsCardItem = ({
         <img src={image} alt={name} width="100%" />
         <div className="pt-1 pb-1">
           <span className="text text_type_main-medium">{price}</span>
-          <span className={currencyIconStyle}>
+          <span className={CardItemStyles.currencyIcon}>
             <CurrencyIcon type="primary" />
           </span>
         </div>

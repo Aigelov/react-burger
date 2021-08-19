@@ -33,7 +33,7 @@ export const BurgerIngredients = () => {
 
     history.push({
       pathname: `/ingredients/${selectedIngredient._id}`,
-      state: { modal: location },
+      state: { background: location },
     });
   };
 

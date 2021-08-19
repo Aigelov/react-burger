@@ -33,7 +33,7 @@ export const ProfileOrders = () => {
 
     history.push({
       pathname: `/profile/orders/${order.number}`,
-      state: { profileFeed: location },
+      state: { background: location },
     });
   };
 

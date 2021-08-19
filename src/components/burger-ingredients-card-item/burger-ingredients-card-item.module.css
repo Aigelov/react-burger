@@ -3,10 +3,12 @@
   display: flex;
   flex: 0 0 50%;
   flex-direction: column;
+  margin-bottom: calc(var(--offset-base-size) * 8);
   position: relative;
   text-align: center;
 }
 
 .currencyIcon {
+  margin-left: calc(var(--offset-base-size) * 2);
   vertical-align: bottom;
 }

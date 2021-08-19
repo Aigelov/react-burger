@@ -33,7 +33,7 @@ export const Feeds = () => {
 
     history.push({
       pathname: `/feed/${order.number}`,
-      state: { feed: location },
+      state: { background: location },
     });
   };
 

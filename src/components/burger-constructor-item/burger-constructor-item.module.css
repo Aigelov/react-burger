@@ -7,6 +7,8 @@
 
 .ingredientEl {
   cursor: pointer;
+  margin-left: calc(var(--offset-base-size) * 2);
+  margin-right: calc(var(--offset-base-size) * 2);
 }
 
 .drag {

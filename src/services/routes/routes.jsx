@@ -20,15 +20,13 @@ import {
 
 export const Routes = () => {
   const location = useLocation();
-  const modal = location.state && location.state.modal;
-  const feed = location.state && location.state.feed;
-  const profileFeed = location.state && location.state.profileFeed;
+  const background = location.state && location.state.background;
 
   return (
     <>
       <AppHeader />
       <Main>
-        <Switch location={modal || feed || profileFeed || location}>
+        <Switch location={background || location}>
           <Route path="/login" exact={true}>
             <LoginPage />
           </Route>

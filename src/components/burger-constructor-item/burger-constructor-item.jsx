@@ -67,8 +67,6 @@ export const BurgerConstructorItem = memo(function BurgerConstructorItem({
 
   const opacity = isDragging ? 0 : 1;
 
-  const ingredientElStyle = `${IngredientStyles.ingredientEl} ml-2 mr-2`;
-
   return (
     <div
       className={IngredientStyles.ingredient}
@@ -78,7 +76,7 @@ export const BurgerConstructorItem = memo(function BurgerConstructorItem({
       <span className={IngredientStyles.drag}>
         <DragIcon type="primary" />
       </span>
-      <span className={ingredientElStyle}>
+      <span className={IngredientStyles.ingredientEl}>
         <ConstructorElement
           {...props}
           handleClose={() => handleRemove(props._id)}
