@@ -1,7 +1,7 @@
 .tabs {
   display: flex;
   flex-direction: column;
-  margin-right: calc(var(--offset-base-size) * 30);
+  margin-right: calc(var(--offset-base-size) * 15);
   width: 320px;
 }
 

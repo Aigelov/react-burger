@@ -1,0 +1,25 @@
+.ordersStatusList {
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  margin-left: calc(var(--offset-base-size) * 7.5);
+  overflow-y: auto;
+  width: calc(50% - calc(var(--offset-base-size) * 7.5));
+}
+
+.ordersReadyAndInProgress {
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  width: 100%;
+}
+
+.ordersReadyAndInProgress > div {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - calc(var(--offset-base-size) * 9));
+}
+
+.ordersReady {
+  margin-right: calc(var(--offset-base-size) * 9);
+}

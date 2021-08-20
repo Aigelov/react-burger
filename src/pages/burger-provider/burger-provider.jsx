@@ -4,7 +4,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { useHistory } from "react-router-dom";
 import { DndProvider } from "react-dnd";
 import { useAlert } from "react-alert";
-import { addIngredient, increaseCount } from "../../services/actions/burger";
+import { addIngredient, increaseCount } from "../../services/actions";
 import { BurgerIngredients } from "../../components/burger-ingredients/burger-ingredients";
 import { BurgerConstructor } from "../../components/burger-constructor/burger-constructor";
 

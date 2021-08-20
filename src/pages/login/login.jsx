@@ -6,8 +6,8 @@ import {
   EmailInput,
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { authActions } from "../../services/actions";
 import LoginStyles from "./login.module.css";
-import { authActions } from "../../services/actions/auth";
 
 const initialValues = {
   email: "",
@@ -35,7 +35,18 @@ export const LoginPage = () => {
     });
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (
+      !values.email ||
+      !values.email.trim() ||
+      !values.password ||
+      !values.password.trim()
+    ) {
+      return;
+    }
+
     dispatch(authActions.login(values));
   };
 
@@ -43,7 +54,7 @@ export const LoginPage = () => {
   const errorDiv = `${LoginStyles.error} mt-6 mb-8`;
 
   return (
-    <div className={LoginStyles.login}>
+    <form onSubmit={handleLogin} className={LoginStyles.login}>
       <div className="text text_type_main-medium">Вход</div>
       <div className="mb-4" />
       <EmailInput onChange={onChange} value={values.email} name={"email"} />
@@ -54,7 +65,7 @@ export const LoginPage = () => {
         name={"password"}
       />
       <div className="mb-6" />
-      <Button type="primary" size="medium" onClick={handleLogin}>
+      <Button type="primary" size="medium">
         Войти
       </Button>
       {error && <div className={errorDiv}>{error}</div>}
@@ -78,6 +89,6 @@ export const LoginPage = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </form>
   );
 };

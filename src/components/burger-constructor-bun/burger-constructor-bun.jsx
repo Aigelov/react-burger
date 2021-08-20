@@ -4,14 +4,18 @@ import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-comp
 import IngredientStyles from "./burger-constructor-bun.module.css";
 
 export const BurgerConstructorBun = memo(function BurgerConstructorBun({
+  type,
+  text,
   ...props
 }) {
   const ingredientElStyle = `${IngredientStyles.ingredientEl} ml-8 mr-5`;
 
+  const newText = type === "top" ? `${text} (верх)` : `${text} (низ)`;
+
   return (
     <div className={IngredientStyles.ingredient}>
       <span className={ingredientElStyle}>
-        <ConstructorElement {...props} />
+        <ConstructorElement {...props} type={type} text={newText} />
       </span>
     </div>
   );

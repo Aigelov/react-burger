@@ -20,11 +20,8 @@ const login = async (form) => {
   const data = await response.json();
 
   if (data.success) {
-    const accessToken = data.accessToken.split("Bearer ")[1];
-    const refreshToken = data.refreshToken;
-
-    setCookie("token", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
+    removeTokens();
+    setTokens(data);
   } else {
     throw new Error(data.message);
   }
@@ -52,8 +49,7 @@ const logout = async (token) => {
   const data = await response.json();
 
   if (data.success) {
-    deleteCookie("token");
-    localStorage.removeItem("refreshToken");
+    removeTokens();
   } else {
     throw new Error(data.message);
   }
@@ -79,11 +75,8 @@ const updateToken = async (token) => {
   const data = await response.json();
 
   if (data.success) {
-    const accessToken = data.accessToken.split("Bearer ")[1];
-    const refreshToken = data.refreshToken;
-
-    setCookie("token", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
+    removeTokens();
+    setTokens(data);
   } else {
     throw new Error(data.message);
   }
@@ -110,11 +103,8 @@ const register = async (form) => {
   const data = await response.json();
 
   if (data.success) {
-    const accessToken = data.accessToken.split("Bearer ")[1];
-    const refreshToken = data.refreshToken;
-
-    setCookie("token", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
+    removeTokens();
+    setTokens(data);
   } else {
     throw new Error(data.message);
   }
@@ -175,6 +165,16 @@ const resetPassword = async (form) => {
   }
 };
 
+const setTokens = ({ accessToken, refreshToken }) => {
+  setCookie("token", accessToken.split("Bearer ")[1]);
+  localStorage.setItem("refreshToken", refreshToken);
+};
+
+const removeTokens = () => {
+  deleteCookie("token");
+  localStorage.removeItem("refreshToken");
+};
+
 export const authService = {
   login,
   logout,
@@ -182,4 +182,5 @@ export const authService = {
   register,
   forgotPassword,
   resetPassword,
+  removeTokens,
 };

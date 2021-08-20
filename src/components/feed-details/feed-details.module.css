@@ -1,0 +1,39 @@
+.feedDetails {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: calc(var(--offset-base-size) * 10);
+  max-width: 640px;
+}
+
+.feedOrderList {
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  overflow-y: auto;
+}
+
+.feedOrder {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-right: calc(var(--offset-base-size) * 6);
+}
+
+.price {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+}
+
+.currencyIcon {
+  margin-top: calc(var(--offset-base-size) * 1);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+}

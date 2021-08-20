@@ -20,13 +20,13 @@ import {
 
 export const Routes = () => {
   const location = useLocation();
-  const modal = location.state && location.state.modal;
+  const background = location.state && location.state.background;
 
   return (
     <>
       <AppHeader />
       <Main>
-        <Switch location={modal || location}>
+        <Switch location={background || location}>
           <Route path="/login" exact={true}>
             <LoginPage />
           </Route>
@@ -39,11 +39,14 @@ export const Routes = () => {
           <Route path="/reset-password" exact={true}>
             <ResetPasswordPage />
           </Route>
-          <Route path={`/ingredients/:ingredientId`}>
+          <Route path="/ingredients/:ingredientId">
             <Ingredient />
           </Route>
-          <Route path="/profile/orders" exact={true}>
-            <ProfileOrders />
+          <Route path="/feed/:orderId">
+            <Feed />
+          </Route>
+          <Route path="/feed" exact={true}>
+            <Feeds />
           </Route>
           <Route path="/" exact={true}>
             <BurgerProviderPage />
@@ -51,14 +54,11 @@ export const Routes = () => {
           <ProtectedRoute path="/profile" exact={true}>
             <ProfilePage />
           </ProtectedRoute>
-          <ProtectedRoute path="/profile/orders/:orderId" exact={true}>
+          <ProtectedRoute path="/profile/orders/:orderId">
             <ProfileOrder />
           </ProtectedRoute>
-          <ProtectedRoute path="/feeds" exact={true}>
-            <Feeds />
-          </ProtectedRoute>
-          <ProtectedRoute path="/feed/:feedId" exact={true}>
-            <Feed />
+          <ProtectedRoute path="/profile/orders" exact={true}>
+            <ProfileOrders />
           </ProtectedRoute>
           <Route path="*">
             <NoMatch />

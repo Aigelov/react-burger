@@ -33,7 +33,7 @@ export const BurgerIngredients = () => {
 
     history.push({
       pathname: `/ingredients/${selectedIngredient._id}`,
-      state: { modal: location },
+      state: { background: location },
     });
   };
 
@@ -68,6 +68,10 @@ export const BurgerIngredients = () => {
 
   const onModalClose = () => {
     setVisible(false);
+
+    history.push({
+      pathname: "/",
+    });
   };
 
   const burgerIngredientsStyle = `${BurgerIngredientsStyles.burgerIngredients} mt-10 mr-5`;

@@ -17,6 +17,6 @@ export const routes = [
     svgIcon: <ListIcon type="secondary" />,
     text: "Лента заказов",
     padding: "p-5",
-    path: "/profile/orders",
+    path: "/feed",
   },
 ];

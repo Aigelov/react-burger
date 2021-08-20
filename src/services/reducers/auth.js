@@ -1,4 +1,5 @@
 import {
+  CLEAR_AUTHORIZATION,
   FORGOT_PASSWORD_FAILURE,
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
@@ -19,7 +20,7 @@ import {
   UPDATE_TOKEN_FAILURE,
   UPDATE_TOKEN_REQUEST,
   UPDATE_TOKEN_SUCCESS,
-} from "../actions/auth";
+} from "../actions";
 
 const initialState = {
   loading: false,
@@ -41,6 +42,14 @@ export const authReducer = (state = initialState, action) => {
         refreshToken: action.refreshToken,
       };
     }
+    case CLEAR_AUTHORIZATION: {
+      return {
+        ...state,
+        isAuthorized: false,
+        accessToken: null,
+        refreshToken: null,
+      };
+    }
     case SET_EMAIL_RESET: {
       return {
         ...state,
@@ -58,7 +67,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         isAuthorized: true,
         user: action.data.user,
-        accessToken: action.data.accessToken,
+        accessToken: action.data.accessToken.split("Bearer ")[1],
         refreshToken: action.data.refreshToken,
       };
     }
@@ -100,7 +109,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthorized: true,
-        accessToken: action.data.accessToken,
+        accessToken: action.data.accessToken.split("Bearer ")[1],
         refreshToken: action.data.refreshToken,
         error: null,
       };
@@ -125,7 +134,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         user: action.data.user,
         isAuthorized: true,
-        accessToken: action.data.accessToken,
+        accessToken: action.data.accessToken.split("Bearer ")[1],
         refreshToken: action.data.refreshToken,
       };
     }

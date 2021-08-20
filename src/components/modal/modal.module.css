@@ -8,6 +8,8 @@
     0 0 1px rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
   margin: auto;
+  padding: calc(var(--offset-base-size) * 10);
+  padding-bottom: calc(var(--offset-base-size) * 25);
   position: relative;
   top: 100px;
   width: 720px;
@@ -15,6 +17,7 @@
 }
 
 .header {
+  margin-bottom: calc(var(--offset-base-size) * 10);
   position: relative;
 }
 

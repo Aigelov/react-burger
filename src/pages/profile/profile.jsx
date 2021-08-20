@@ -54,8 +54,11 @@ export const ProfilePage = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     dispatch(profileActions.updateUser(removeEmptyParams(values)));
+
     setValues((prevValues) => ({
       ...prevValues,
       password: "",
@@ -74,7 +77,7 @@ export const ProfilePage = () => {
     <div className={ProfileStyles.profile}>
       <ProfileTabs />
 
-      <div className={ProfileStyles.form}>
+      <form onSubmit={handleSubmit} className={ProfileStyles.form}>
         <Input
           type={"text"}
           placeholder={"Имя"}
@@ -95,19 +98,14 @@ export const ProfilePage = () => {
         />
         <div className="mb-6" />
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <Button
-            type="primary"
-            size="medium"
-            style={{ marginRight: "16px" }}
-            onClick={handleSubmit}
-          >
+          <Button type="primary" size="medium" style={{ marginRight: "16px" }}>
             Сохранить
           </Button>
           <Button type="primary" size="medium" onClick={handleReset}>
             Отмена
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
