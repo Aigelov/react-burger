@@ -14,7 +14,7 @@ export const BurgerIngredientsCard = ({
     <div ref={tabRef}>
       <p className="text text_type_main-medium mb-6">{title}</p>
 
-      <span className={CardStyles.card}>
+      <div className={CardStyles.card}>
         {ingredients.map((item) => (
           <BurgerIngredientsCardItem
             key={item._id}
@@ -22,7 +22,7 @@ export const BurgerIngredientsCard = ({
             {...item}
           />
         ))}
-      </span>
+      </div>
     </div>
   );
 };

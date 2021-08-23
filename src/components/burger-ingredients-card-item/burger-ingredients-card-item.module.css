@@ -8,6 +8,13 @@
   text-align: center;
 }
 
+.priceCurrency {
+  display: flex;
+  justify-content: center;
+  padding-bottom: calc(var(--offset-base-size) * 1);
+  padding-top: calc(var(--offset-base-size) * 1);
+}
+
 .currencyIcon {
   margin-left: calc(var(--offset-base-size) * 2);
   vertical-align: bottom;

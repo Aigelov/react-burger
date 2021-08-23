@@ -13,7 +13,7 @@ export const BurgerIngredientsTabs = ({
   const tabStyle = `${BurgerIngredientsTabsStyles.tabs} mb-10`;
 
   return (
-    <span className={tabStyle}>
+    <div className={tabStyle}>
       <Tab
         value="bun"
         active={currentTab === "bun"}
@@ -35,7 +35,7 @@ export const BurgerIngredientsTabs = ({
       >
         Начинки
       </Tab>
-    </span>
+    </div>
   );
 };
 

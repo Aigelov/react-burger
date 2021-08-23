@@ -74,11 +74,9 @@ export const BurgerIngredients = () => {
     });
   };
 
-  const burgerIngredientsStyle = `${BurgerIngredientsStyles.burgerIngredients} mt-10 mr-5`;
-
   return (
     <>
-      <section className={burgerIngredientsStyle}>
+      <section className={BurgerIngredientsStyles.burgerIngredients}>
         {loading && <Spinner />}
 
         {!loading && ingredients.length && (

@@ -100,13 +100,13 @@ export const BurgerConstructor = memo(function BurgerConstructor({
       )}
 
       {ingredients.length > 0 && (
-        <span className={IngredientsStyles.bottom}>
+        <div className={IngredientsStyles.bottom}>
           <TotalPrice />
-          <span className="ml-2 mr-10 mt-1">
+          <div className="ml-2 mr-10 mt-1">
             <CurrencyIcon type="primary" />
-          </span>
+          </div>
           <OrderButton />
-        </span>
+        </div>
       )}
     </section>
   );

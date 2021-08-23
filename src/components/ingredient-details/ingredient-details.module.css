@@ -2,12 +2,9 @@
   text-align: center;
 }
 
-.title {
-  display: block;
-}
-
 .helpfulness {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: calc(var(--offset-base-size) * 8);
 }

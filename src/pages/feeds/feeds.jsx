@@ -44,11 +44,9 @@ export const Feeds = () => {
     });
   };
 
-  const sectionStyle = `${FeedsStyles.feedsWrapper} mt-10 mr-5`;
-
   return (
     <>
-      <section className={sectionStyle}>
+      <section className={FeedsStyles.feedsWrapper}>
         <p className="text text_type_main-large mb-5">Лента заказов</p>
 
         <div className={FeedsStyles.feeds}>
