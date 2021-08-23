@@ -16,7 +16,7 @@ import {
   CLEAR_SELECTED_INGREDIENTS,
 } from "../actions";
 
-const initialState = {
+export const burgerReducerInitialState = {
   ingredients: [],
   ingredientsRequest: false,
   ingredientsFailed: false,
@@ -26,7 +26,7 @@ const initialState = {
   error: null,
 };
 
-export const burgerReducer = (state = initialState, action) => {
+export const burgerReducer = (state = burgerReducerInitialState, action) => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {
