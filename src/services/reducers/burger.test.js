@@ -83,18 +83,28 @@ describe("burger reducer", () => {
   });
 
   it("should handle ADD_INGREDIENT", () => {
-    expect(
-      burgerReducer(initialState, {
-        type: ADD_INGREDIENT,
-        ingredient: INGREDIENT_MOCK,
-      })
-    ).toEqual({
+    const burger = burgerReducer(initialState, {
+      type: ADD_INGREDIENT,
+      ingredient: INGREDIENT_MOCK,
+    });
+
+    burger.selectedIngredients = burger.selectedIngredients.map((item) => {
+      delete item.uniqueID;
+      return item;
+    });
+
+    const burgerExpected = {
       ...initialState,
       selectedIngredients: addIngredient(
         INGREDIENT_MOCK,
         initialState.selectedIngredients
-      ),
-    });
+      ).map((item) => {
+        delete item.uniqueID;
+        return item;
+      }),
+    };
+
+    expect(burger).toEqual(burgerExpected);
   });
 
   it("should handle REMOVE_INGREDIENT", () => {
