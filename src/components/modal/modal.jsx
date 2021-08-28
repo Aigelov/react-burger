@@ -44,9 +44,9 @@ export const Modal = ({ children, header, onClose }) => {
     <ModalOverlay>
       <div className={ModalStyles.modal} ref={modalRef}>
         <header className={ModalStyles.header}>
-          <span className={ModalStyles.close} onClick={onClose}>
+          <div className={ModalStyles.close} onClick={onClose}>
             <CloseIcon type="primary" />
-          </span>
+          </div>
           {header && (
             <span className="text text_type_main-medium">{header}</span>
           )}

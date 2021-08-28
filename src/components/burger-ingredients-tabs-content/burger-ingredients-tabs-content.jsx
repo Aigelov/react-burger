@@ -14,8 +14,6 @@ export const BurgerIngredientsTabsContent = ({
 }) => {
   const { ingredients } = useSelector((store) => store.burger);
 
-  const tabContentStyle = `${BurgerIngredientsTabsContentStyles.tabContent} pr-3`;
-
   const buns = ingredients.filter((item) => item.type === "bun");
   const sauce = ingredients.filter((item) => item.type === "sauce");
   const main = ingredients.filter((item) => item.type === "main");
@@ -40,7 +38,7 @@ export const BurgerIngredientsTabsContent = ({
 
   return (
     <div
-      className={tabContentStyle}
+      className={BurgerIngredientsTabsContentStyles.tabContent}
       ref={scrollContainerRef}
       onScroll={handleScroll}
     >

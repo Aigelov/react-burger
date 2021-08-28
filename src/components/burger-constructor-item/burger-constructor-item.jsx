@@ -73,15 +73,15 @@ export const BurgerConstructorItem = memo(function BurgerConstructorItem({
       ref={(node) => dragRef(dropRef(node))}
       style={{ opacity }}
     >
-      <span className={IngredientStyles.drag}>
+      <div className={IngredientStyles.drag}>
         <DragIcon type="primary" />
-      </span>
-      <span className={IngredientStyles.ingredientEl}>
+      </div>
+      <div className={IngredientStyles.ingredientEl}>
         <ConstructorElement
           {...props}
           handleClose={() => handleRemove(props._id)}
         />
-      </span>
+      </div>
     </div>
   );
 });

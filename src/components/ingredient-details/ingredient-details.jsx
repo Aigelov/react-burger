@@ -12,9 +12,6 @@ export const IngredientDetails = ({
   fat,
   carbohydrates,
 }) => {
-  const helpfulnessStyle = `${IngredientStyles.helpfulness} mt-8`;
-  const titleStyle = `${IngredientStyles.title} text text_type_main-medium`;
-
   const details = [
     {
       title: "Калории,ккал",
@@ -37,12 +34,14 @@ export const IngredientDetails = ({
   return (
     <div className={IngredientStyles.ingredientDetails}>
       <img src={image_large} alt="Ingredient" />
-      <span className={titleStyle}>{name}</span>
-      <span className={helpfulnessStyle}>
+      <span className="text text_type_main-medium" style={{ display: "block" }}>
+        {name}
+      </span>
+      <div className={IngredientStyles.helpfulness}>
         {details.map((detail) => (
           <IngredientDetailsItem key={detail.title} {...detail} />
         ))}
-      </span>
+      </div>
     </div>
   );
 };

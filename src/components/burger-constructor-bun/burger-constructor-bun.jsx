@@ -14,9 +14,9 @@ export const BurgerConstructorBun = memo(function BurgerConstructorBun({
 
   return (
     <div className={IngredientStyles.ingredient}>
-      <span className={ingredientElStyle}>
+      <div className={ingredientElStyle}>
         <ConstructorElement {...props} type={type} text={newText} />
-      </span>
+      </div>
     </div>
   );
 });
