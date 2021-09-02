@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useCheckPreviousLogin } from "../services/hooks/check-previous-login";
+import { useCheckPreviousLogin, useDispatch } from "../services/hooks";
 import {
   WS_CONNECTION_START,
   WS_USER_CONNECTION_START,
