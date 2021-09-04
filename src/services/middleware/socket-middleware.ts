@@ -1,10 +1,10 @@
-import { IWsActions } from "../actions";
+import { ISocketWsActions } from "../actions";
 import { Middleware } from "redux";
 import { RootState } from "../../index";
 
 export const socketMiddleware = (
   wsUrl: string,
-  wsActions: IWsActions
+  wsActions: ISocketWsActions
 ): Middleware<{}, RootState> => {
   return (store) => {
     let socket: WebSocket | null = null;

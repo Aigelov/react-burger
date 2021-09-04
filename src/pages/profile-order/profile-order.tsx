@@ -12,9 +12,7 @@ export const ProfileOrder = () => {
   const { orderId } = useParams<IProfileOrderParams>();
 
   const { ingredients } = useSelector(({ burger }) => burger);
-  const orders = useSelector(
-    ({ wsReducer }) => (wsReducer as any).orders || []
-  );
+  const orders = useSelector(({ wsReducer }) => wsReducer.orders);
   const [ordersAll] = orders;
 
   if (!ordersAll) {

@@ -37,7 +37,7 @@ export type TWsUserActions =
   | IWsUserGetMessage
   | IWsUserSendMessage;
 
-export interface IWsUserActions {
+export interface ISocketWsUserActions {
   readonly wsUserInit: typeof WS_USER_CONNECTION_START;
   readonly wsUserSendOrder: typeof WS_USER_SEND_ORDER;
   readonly userOnOpen: typeof WS_USER_CONNECTION_SUCCESS;

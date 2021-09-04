@@ -14,7 +14,7 @@ type TProfileReducerInitialState = {
   user: IUser | null;
 };
 
-const initialState: TProfileReducerInitialState = {
+export const profileReducerInitialState: TProfileReducerInitialState = {
   error: null,
   loading: false,
   user: null,
@@ -31,7 +31,10 @@ const initialState: TProfileReducerInitialState = {
  * | TWsUserActions>) => Promise<...>' is missing the following properties from type
  * 'IWsUserSendMessage': type, payload
  */
-export const profileReducer = (state = initialState, action: any) => {
+export const profileReducer = (
+  state = profileReducerInitialState,
+  action: any
+) => {
   switch (action.type) {
     case GET_USER_REQUEST: {
       return {

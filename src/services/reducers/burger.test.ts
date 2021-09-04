@@ -45,7 +45,7 @@ const INGREDIENT_MOCK = {
 };
 
 describe("burger reducer", () => {
-  it("should return the initial state", () => {
+  it("should return initial state", () => {
     expect(burgerReducer(initialState, {} as TBurgerActions)).toEqual(
       initialState
     );

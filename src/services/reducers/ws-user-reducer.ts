@@ -7,34 +7,37 @@ import {
 import { IOrderStatusList } from "../../components/order-status-list/order-status-list";
 import { TWsUserActions } from "../actions";
 
-type TWsUserState = {
+export type TWsUserState = {
   wsUserConnected: boolean;
   userOrders: IOrderStatusList[];
 };
 
-const initialState: TWsUserState = {
+export const wsUserReducerInitialState: TWsUserState = {
   wsUserConnected: false,
   userOrders: [],
 };
 
-export const wsUserReducer = (state = initialState, action: TWsUserActions) => {
+export const wsUserReducer = (
+  state = wsUserReducerInitialState,
+  action: TWsUserActions
+) => {
   switch (action.type) {
     case WS_USER_CONNECTION_SUCCESS: {
       return {
         ...state,
-        wsConnected: true,
+        wsUserConnected: true,
       };
     }
     case WS_USER_CONNECTION_ERROR: {
       return {
         ...state,
-        wsConnected: false,
+        wsUserConnected: false,
       };
     }
     case WS_USER_CONNECTION_CLOSED: {
       return {
         ...state,
-        wsConnected: false,
+        wsUserConnected: false,
       };
     }
     case WS_USER_GET_ORDER: {

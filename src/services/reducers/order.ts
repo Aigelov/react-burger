@@ -11,13 +11,16 @@ type TOrderReducerInitialState = {
   order: IUserOrder | null;
 };
 
-const initialState: TOrderReducerInitialState = {
+export const orderReducerInitialState: TOrderReducerInitialState = {
   loading: false,
   error: null,
   order: null,
 };
 
-export const orderReducer = (state = initialState, action: TOrderActions) => {
+export const orderReducer = (
+  state = orderReducerInitialState,
+  action: TOrderActions
+) => {
   switch (action.type) {
     case CHECKOUT_ORDER_REQUEST: {
       return {

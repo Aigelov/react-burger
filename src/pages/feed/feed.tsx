@@ -12,9 +12,7 @@ export const Feed = () => {
   const { orderId } = useParams<FeedParams>();
 
   const { ingredients } = useSelector(({ burger }) => burger);
-  const { orders } = useSelector(
-    ({ wsReducer }) => (wsReducer as any).orders || []
-  );
+  const orders = useSelector(({ wsReducer }) => wsReducer.orders);
 
   if (!orders?.length) {
     return null;

@@ -33,7 +33,7 @@ type TAuthState = {
   error: Error | null;
 };
 
-const initialState: TAuthState = {
+export const authReducerInitialState: TAuthState = {
   loading: false,
   user: null,
   accessToken: null,
@@ -43,7 +43,10 @@ const initialState: TAuthState = {
   error: null,
 };
 
-export const authReducer = (state = initialState, action: TAuthActions) => {
+export const authReducer = (
+  state = authReducerInitialState,
+  action: TAuthActions
+) => {
   switch (action.type) {
     case SET_AUTHORIZATION: {
       return {

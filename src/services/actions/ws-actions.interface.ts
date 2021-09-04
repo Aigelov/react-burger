@@ -6,7 +6,8 @@ import {
   WS_GET_ORDER,
   WS_SEND_ORDER,
 } from "../action-types";
-import { IOrder, IWsOrder } from "./order.interface";
+import { IWsOrder } from "./order.interface";
+import { IOrderStatusList } from "../../components/order-status-list/order-status-list";
 
 export interface IWsConnectionSuccess {
   readonly type: typeof WS_CONNECTION_SUCCESS;
@@ -22,7 +23,7 @@ export interface IWsConnectionClosed {
 
 export interface IWsGetMessage {
   readonly type: typeof WS_GET_ORDER;
-  readonly payload: IOrder;
+  readonly payload: IOrderStatusList;
 }
 
 export interface IWsSendMessage {
@@ -37,7 +38,7 @@ export type TWsActions =
   | IWsGetMessage
   | IWsSendMessage;
 
-export interface IWsActions {
+export interface ISocketWsActions {
   readonly wsInit: typeof WS_CONNECTION_START;
   readonly wsSendOrder: typeof WS_SEND_ORDER;
   readonly onOpen: typeof WS_CONNECTION_SUCCESS;

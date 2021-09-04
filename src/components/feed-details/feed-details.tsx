@@ -41,18 +41,16 @@ export const FeedDetails: FC<IFeedDetails> = ({
   );
 
   const orderIngredients = ingredients
-    .filter((item) => {
-      return order.ingredients.includes(item._id);
-    })
+    .filter((item) => order.ingredients.includes(item._id))
     .map((item: IBurgerIngredient & { amount?: number }) => {
       item.amount = amountCount[item._id];
 
       return item;
     });
 
-  const totalPrice = ingredients
+  const totalPrice = orderIngredients
     .filter((item) => order.ingredients.includes(item._id))
-    .reduce((total, cur) => total + cur.price, 0);
+    .reduce((total, cur) => total + cur.price * (cur.amount || 1), 0);
 
   return (
     <div className={FeedDetailsStyles.feedDetails}>

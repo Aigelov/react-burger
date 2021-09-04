@@ -6,6 +6,7 @@ import { STATUS_TYPES } from "../_constants/status-types";
 import { FeedCard } from "../feed-card/feed-card";
 import CardStyles from "./card.module.css";
 import { ICard } from "../../services/models/card.model";
+import { IBurgerIngredient } from "../../services/models";
 
 export const Card: FC<ICard> = ({ order, ingredients, cardClickHandler }) => {
   const { location } = useHistory();
@@ -17,9 +18,30 @@ export const Card: FC<ICard> = ({ order, ingredients, cardClickHandler }) => {
     }
   }, [location.pathname]);
 
-  const totalPrice = ingredients
+  const amountCount: Record<string, number> = order.ingredients.reduce(
+    (acc: Record<string, number>, cur: string) => {
+      if (!acc[cur]) {
+        acc[cur] = 1;
+      } else {
+        acc[cur] += 1;
+      }
+
+      return acc;
+    },
+    {}
+  );
+
+  const orderIngredients = ingredients
     .filter((item) => order.ingredients.includes(item._id))
-    .reduce((total, cur) => total + cur.price, 0);
+    .map((item: IBurgerIngredient & { amount?: number }) => {
+      item.amount = amountCount[item._id];
+
+      return item;
+    });
+
+  const totalPrice = orderIngredients
+    .filter((item) => order.ingredients.includes(item._id))
+    .reduce((total, cur) => total + cur.price * (cur.amount || 1), 0);
 
   return (
     <div className={CardStyles.cards} onClick={() => cardClickHandler(order)}>

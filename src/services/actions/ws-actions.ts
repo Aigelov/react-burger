@@ -12,7 +12,8 @@ import {
   IWsGetMessage,
   IWsSendMessage,
 } from "./ws-actions.interface";
-import { IOrder, IWsOrder } from "./order.interface";
+import { IWsOrder } from "./order.interface";
+import { IOrderStatusList } from "../../components/order-status-list/order-status-list";
 
 export const wsConnectionSuccess = (): IWsConnectionSuccess => {
   return {
@@ -32,10 +33,12 @@ export const wsConnectionClosed = (): IWsConnectionClosed => {
   };
 };
 
-export const wsGetMessage = (order: IOrder): IWsGetMessage => {
+export const wsGetMessage = (
+  orderStatusList: IOrderStatusList
+): IWsGetMessage => {
   return {
     type: WS_GET_ORDER,
-    payload: order,
+    payload: orderStatusList,
   };
 };
 

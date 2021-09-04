@@ -12,12 +12,15 @@ type TWsState = {
   orders: IOrderStatusList[];
 };
 
-const initialState: TWsState = {
+export const wsReducerInitialState: TWsState = {
   wsConnected: false,
   orders: [],
 };
 
-export const wsReducer = (state = initialState, action: TWsActions) => {
+export const wsReducer = (
+  state = wsReducerInitialState,
+  action: TWsActions
+) => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS: {
       return {
@@ -43,7 +46,10 @@ export const wsReducer = (state = initialState, action: TWsActions) => {
         orders: state.orders.length
           ? [
               ...state.orders,
-              { ...action.payload, timestamp: new Date().getTime() / 1000 },
+              {
+                ...action.payload,
+                timestamp: new Date().getTime() / 1000,
+              },
             ]
           : [{ ...action.payload, timestamp: new Date().getTime() / 1000 }],
       };

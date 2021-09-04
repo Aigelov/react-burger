@@ -7,6 +7,7 @@ import { CardList } from "../../components/card-list/card-list";
 import { Modal } from "../../components/modal/modal";
 import { useSelector } from "../../services/hooks";
 import { IOrder } from "../../services/actions";
+import { TWsUserState } from "../../services/reducers/ws-user-reducer";
 
 export const ProfileOrders = () => {
   const history = useHistory();
@@ -14,11 +15,11 @@ export const ProfileOrders = () => {
 
   const [visible, setVisible] = useState<boolean>(false);
   const [orderId, setOrderId] = useState<string>("");
-  const { ingredients } = useSelector(({ burger }) => burger);
-  const orders = useSelector(
-    ({ wsUserReducer }) => (wsUserReducer as any).userOrders || []
+  const ingredients = useSelector(({ burger }) => burger.ingredients);
+  const { userOrders } = useSelector<TWsUserState>(
+    ({ wsUserReducer }) => wsUserReducer
   );
-  const [ordersAll] = orders;
+  const [ordersAll] = userOrders;
 
   useEffect(() => {
     if (history.action === "POP") {

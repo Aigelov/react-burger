@@ -15,9 +15,7 @@ export const Feeds = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [orderId, setOrderId] = useState<string>("");
   const { ingredients } = useSelector(({ burger }) => burger);
-  const orders = useSelector(
-    ({ wsReducer }) => (wsReducer as any).orders || []
-  );
+  const orders = useSelector(({ wsReducer }) => wsReducer.orders);
   const [ordersAll] = orders;
 
   useEffect(() => {
