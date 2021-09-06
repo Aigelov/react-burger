@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { format } from "date-fns";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { STATUS_TYPES } from "../_constants/status-types";
+import { STATUS_TYPES } from "../constants/status-types";
 import { FeedCard } from "../feed-card/feed-card";
 import CardStyles from "./card.module.css";
 import { ICard } from "../../services/models/card.model";

@@ -2,7 +2,7 @@ import React, { FC, Fragment } from "react";
 import { format } from "date-fns";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import FeedDetailsStyles from "./feed-details.module.css";
-import { STATUS_TYPES } from "../_constants/status-types";
+import { STATUS_TYPES } from "../constants/status-types";
 import { IBurgerIngredient } from "../../services/models";
 import { IOrderStatusList } from "../order-status-list/order-status-list";
 
