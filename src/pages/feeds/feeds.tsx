@@ -5,16 +5,21 @@ import { FeedDetails } from "../../components/feed-details/feed-details";
 import { CardList } from "../../components/card-list/card-list";
 import { Modal } from "../../components/modal/modal";
 import FeedsStyles from "./feeds.module.css";
-import { useSelector } from "../../services/hooks";
+import {
+  WS_CONNECTION_CLOSE,
+  WS_CONNECTION_START,
+} from "../../services/action-types";
+import { useDispatch, useSelector } from "../../services/hooks";
 import { IOrder } from "../../services/actions";
 
 export const Feeds = () => {
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const [visible, setVisible] = useState<boolean>(false);
   const [orderId, setOrderId] = useState<string>("");
-  const { ingredients } = useSelector(({ burger }) => burger);
+  const ingredients = useSelector(({ burger }) => burger.ingredients);
   const orders = useSelector(({ wsReducer }) => wsReducer.orders);
   const [ordersAll] = orders;
 
@@ -23,6 +28,14 @@ export const Feeds = () => {
       history.push(history.location.pathname);
     }
   }, [history]);
+
+  useEffect(() => {
+    dispatch({ type: WS_CONNECTION_START });
+
+    return () => {
+      dispatch({ type: WS_CONNECTION_CLOSE });
+    };
+  }, [dispatch]);
 
   if (!ordersAll) {
     return null;

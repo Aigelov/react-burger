@@ -5,13 +5,18 @@ import { FeedDetails } from "../../components/feed-details/feed-details";
 import ProfileOrdersStyles from "./profile-orders.module.css";
 import { CardList } from "../../components/card-list/card-list";
 import { Modal } from "../../components/modal/modal";
-import { useSelector } from "../../services/hooks";
+import { useDispatch, useSelector } from "../../services/hooks";
 import { IOrder } from "../../services/actions";
 import { TWsUserState } from "../../services/reducers/ws-user-reducer";
+import {
+  WS_USER_CONNECTION_CLOSE,
+  WS_USER_CONNECTION_START,
+} from "../../services/action-types";
 
 export const ProfileOrders = () => {
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const [visible, setVisible] = useState<boolean>(false);
   const [orderId, setOrderId] = useState<string>("");
@@ -26,6 +31,14 @@ export const ProfileOrders = () => {
       history.push(history.location.pathname);
     }
   }, [history]);
+
+  useEffect(() => {
+    dispatch({ type: WS_USER_CONNECTION_START });
+
+    return () => {
+      dispatch({ type: WS_USER_CONNECTION_CLOSE });
+    };
+  }, [dispatch]);
 
   if (!ordersAll) {
     return null;

@@ -1,4 +1,5 @@
 import {
+  WS_CONNECTION_CLOSE,
   WS_CONNECTION_CLOSED,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_START,
@@ -40,6 +41,7 @@ export type TWsActions =
 
 export interface ISocketWsActions {
   readonly wsInit: typeof WS_CONNECTION_START;
+  readonly wsClose: typeof WS_CONNECTION_CLOSE;
   readonly wsSendOrder: typeof WS_SEND_ORDER;
   readonly onOpen: typeof WS_CONNECTION_SUCCESS;
   readonly onClose: typeof WS_CONNECTION_CLOSED;

@@ -14,6 +14,7 @@ export const socketUserMiddleware = (
       const { type, payload } = action;
       const {
         wsUserInit,
+        wsUserClose,
         wsUserSendOrder,
         userOnOpen,
         userOnClose,
@@ -27,6 +28,10 @@ export const socketUserMiddleware = (
       }
 
       if (socket) {
+        if (type === wsUserClose) {
+          socket.close(1000, "Close user websocket without error.");
+        }
+
         socket.onopen = (event) => {
           dispatch({ type: userOnOpen, payload: event });
         };

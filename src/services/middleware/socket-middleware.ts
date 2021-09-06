@@ -12,8 +12,15 @@ export const socketMiddleware = (
     return (next) => (action) => {
       const { dispatch, getState } = store;
       const { type, payload } = action;
-      const { wsInit, wsSendOrder, onOpen, onClose, onError, onOrder } =
-        wsActions;
+      const {
+        wsInit,
+        wsClose,
+        wsSendOrder,
+        onOpen,
+        onClose,
+        onError,
+        onOrder,
+      } = wsActions;
       const { accessToken } = getState().auth;
 
       if (type === wsInit) {
@@ -21,6 +28,10 @@ export const socketMiddleware = (
       }
 
       if (socket) {
+        if (type === wsClose) {
+          socket.close(1000, "Close websocket without error.");
+        }
+
         socket.onopen = (event) => {
           dispatch({ type: onOpen, payload: event });
         };
