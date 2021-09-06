@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { Provider as AlertProvider } from "react-alert";
 // @ts-ignore
 import AlertTemplate from "react-alert-template-basic";
+import { rootReducer } from "./services/reducers";
 import reportWebVitals from "./reportWebVitals";
 import { alertOptions } from "./alert";
 import { App } from "./components/app";
@@ -11,6 +12,9 @@ import { initStore } from "./store";
 import "./index.css";
 
 const store = initStore();
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;
 
 ReactDOM.render(
   <React.StrictMode>

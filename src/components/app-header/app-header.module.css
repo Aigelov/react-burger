@@ -4,6 +4,8 @@
     0 16px 24px rgba(0, 0, 0, 0.04),
     0 4px 8px rgba(0, 0, 0, 0.04),
     0 0 1px rgba(0, 0, 0, 0.04);
+  padding-bottom: calc(var(--offset-base-size) * 4);
+  padding-top: calc(var(--offset-base-size) * 4);
 }
 
 .header {
